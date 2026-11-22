@@ -1,114 +1,1422 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#f8f4ed" />
-        <meta name="description" content="Bean & Bloom — a little more beautiful. Independent coffee, bakes, and good company." />
-        <link rel="icon" href="%PUBLIC_URL%/mark.svg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
-        <!--
-        Notice the use of %PUBLIC_URL% in the tags above.
-        It will be replaced with the URL of the `public` folder during the build.
-        Only files inside the `public` folder can be referenced from the HTML.
-
-        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-        work correctly both with client-side routing and a non-root public URL.
-        Learn how to configure a non-root public URL by running `npm run build`.
-        -->
-        <title>Bean & Bloom — A little more beautiful</title>
-        <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                });
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beans & Bloom | Specialty Coffee & Botanical Conservatory</title>
+    
+    <!-- Google Fonts: Cormorant Garamond for Editorial Serif & Plus Jakarta Sans for Modern Cleanliness -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Crisp Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FDFBF7',
+                            100: '#F7F3EB',
+                            200: '#EDE5D5',
+                            300: '#DFD2B9',
+                        },
+                        sage: {
+                            50: '#F3F6F4',
+                            100: '#E2EAE4',
+                            200: '#C5D5CA',
+                            400: '#7D9B86',
+                            600: '#4A6B53',
+                            700: '#395440',
+                            800: '#2A3F30',
+                        },
+                        espresso: {
+                            600: '#5C4033',
+                            700: '#422C22',
+                            800: '#2C1D16',
+                            900: '#1D120D',
+                        },
+                        terracotta: {
+                            400: '#D47A5B',
+                            500: '#C26343',
+                            600: '#A64D30',
                         }
-                        ((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r);
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_DbsPb39SRc8z3EiQ6Dhj6ikv4H4rTKcht9d4sZSesceP", {
-                api_host: "https://ap.emergent.sh",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well,
-                session_recording: {
-                    recordCrossOriginIframes: true,
-                    capturePerformance: false,
-                },
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(44, 29, 22, 0.08)',
+                        'card': '0 4px 20px -2px rgba(44, 29, 22, 0.06)',
+                        'glow': '0 0 25px rgba(74, 107, 83, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F3EB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5D5CA;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4A6B53;
+        }
+
+        /* Subtle Botanical Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1.5deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        /* Toast Slide Animation */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translate(-50%, 20px); }
+            100% { opacity: 1; transform: translate(-50%, 0); }
+        }
+        .toast-enter {
+            animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Badge Pulse */
+        @keyframes popScale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+            100% { transform: scale(1); }
+        }
+        .badge-pop {
+            animation: popScale 0.3s ease-out;
+        }
+
+        /* Card Flip / Shine subtle effect */
+        .credit-card-bg {
+            background: linear-gradient(135deg, #2A3F30 0%, #1D120D 60%, #422C22 100%);
+        }
+    </style>
+</head>
+<body class="bg-cream-50 text-espresso-800 font-sans antialiased selection:bg-sage-600 selection:text-cream-50 overflow-x-hidden">
+
+    <!-- ==========================================
+         1. STICKY NAVIGATION BAR
+    =========================================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-cream-50/90 backdrop-blur-md border-b border-cream-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-2xl bg-sage-600 text-cream-50 flex items-center justify-center shadow-sm group-hover:bg-sage-700 transition-colors">
+                        <!-- Custom Botanical Bean SVG -->
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9z"/>
+                            <path d="M12 22c-4.97 0-9-4.03-9-9 4.97 0 9 4.03 9 9z"/>
+                            <path d="M12 22V8"/>
+                            <path d="M12 8c0-3.31 2.69-6 6-6 0 3.31-2.69 6-6 6z"/>
+                            <path d="M12 11c0-2.76-2.24-5-5-5 0 2.76 2.24 5 5 5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-espresso-900 block leading-none">Beans & Bloom</span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-sage-600 font-semibold block mt-0.5">Roastery & Conservatory</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-espresso-700 hover:text-sage-600 transition-colors py-2">Home</a>
+                    <a href="#specials" class="text-sm font-medium text-espresso-700 hover:text-sage-600 transition-colors py-2">Seasonal</a>
+                    <a href="#about" class="text-sm font-medium text-espresso-700 hover:text-sage-600 transition-colors py-2">Our Story</a>
+                    <a href="#menu" class="text-sm font-medium text-espresso-700 hover:text-sage-600 transition-colors py-2">Menu</a>
+                </nav>
+
+                <!-- Right Actions: Cart Button & Mobile Menu Toggle -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleCartDrawer(true)" aria-label="Open Shopping Cart" class="relative inline-flex items-center gap-2.5 bg-espresso-800 hover:bg-espresso-900 text-cream-50 px-4 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow active:scale-95">
+                        <i class="fa-solid fa-bag-shopping text-cream-200"></i>
+                        <span class="hidden sm:inline">Order Bag</span>
+                        <span id="nav-cart-badge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold bg-terracotta-500 text-white rounded-full">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-espresso-800 hover:bg-cream-200/60 focus:outline-none" aria-label="Toggle navigation menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-cream-200 px-4 pt-2 pb-5 space-y-1 shadow-lg">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-medium text-espresso-800 hover:bg-cream-100">Home</a>
+            <a href="#specials" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-medium text-espresso-800 hover:bg-cream-100">Seasonal Specials</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-medium text-espresso-800 hover:bg-cream-100">Our Story & Conservatory</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-medium text-espresso-800 hover:bg-cream-100">Explore Menu</a>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         2. HOME PAGE (HERO SECTION)
+    =========================================== -->
+    <section id="home" class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+        <!-- Decorative Background Organic Shapes -->
+        <div class="absolute top-20 right-[-10%] w-[500px] h-[500px] bg-sage-200/35 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-[-8%] w-[420px] h-[420px] bg-terracotta-400/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 border border-sage-200 text-sage-700 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-seedling text-sage-600"></i>
+                        <span>Small-Batch Roastery & Glasshouse Cafe</span>
+                    </div>
+
+                    <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-espresso-900 leading-[1.08] tracking-tight">
+                        Where Artisan Roast Meets <span class="italic font-normal text-sage-600">Botanical Calm.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-espresso-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Sip single-origin espresso beneath sun-dappled ferns. Every cup is crafted with ethically sourced beans, house-steeped floral syrups, and morning-baked pastries.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-sage-600 hover:bg-sage-700 text-cream-50 font-semibold text-sm shadow-glow transition-all hover:-translate-y-0.5">
+                            <span>Explore Menu</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-cream-100 hover:bg-cream-200 text-espresso-800 border border-cream-300 font-semibold text-sm transition-all">
+                            <span>Our Story</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust / Atmosphere Micro-Stats -->
+                    <div class="pt-6 border-t border-cream-200 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-espresso-900">100%</p>
+                            <p class="text-xs text-espresso-600 mt-0.5">Direct-Trade Arabica</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-sage-600">45+</p>
+                            <p class="text-xs text-espresso-600 mt-0.5">Living Conservatory Plants</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-terracotta-500">4.9 ★</p>
+                            <p class="text-xs text-espresso-600 mt-0.5">Neighborhood Rated</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Visual Storytelling Collage -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative mx-auto max-w-lg lg:max-w-none">
+                        <!-- Main Arch Image -->
+                        <div class="relative rounded-t-[160px] rounded-b-[32px] overflow-hidden shadow-soft border-4 border-cream-100 aspect-[4/5] bg-cream-200">
+                            <img 
+                                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85" 
+                                alt="Sunlit botanical coffee shop interior with lush greenery and latte art" 
+                                onerror="this.src='https://placehold.co/800x1000/E2EAE4/2A3F30?text=Beans+%26+Bloom+Conservatory'"
+                                class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-espresso-900/40 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-cream-50 flex items-end justify-between">
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-cream-200 block">The Glasshouse</span>
+                                    <p class="font-serif text-2xl font-semibold">Morning Pour-Over Bar</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-cream-50/20 backdrop-blur-md text-xs font-medium border border-white/20">
+                                    Open Today • 7am–7pm
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Card Overlay: Signature Drink Spotlight -->
+                        <div class="hidden sm:flex items-center gap-3.5 bg-cream-50/95 backdrop-blur-md p-4 rounded-2xl shadow-soft border border-cream-200 absolute -left-8 bottom-16 max-w-xs animate-float">
+                            <img 
+                                src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=200&q=80" 
+                                alt="Rosemary Honey Oat Latte"
+                                onerror="this.src='https://placehold.co/100x100/C26343/FFFFFF?text=Latte'"
+                                class="w-14 h-14 rounded-xl object-cover flex-shrink-0"
+                            >
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-500">Barista Pick</span>
+                                <h4 class="font-serif text-lg font-bold text-espresso-900 leading-tight">Wildflower Honey Latte</h4>
+                                <p class="text-xs text-espresso-600 mt-0.5">Infused with garden lavender & oat milk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FEATURED HIGHLIGHTS / SEASONAL SPECIALS STRIP
+    =========================================== -->
+    <section id="specials" class="py-10 bg-sage-800 text-cream-50 border-y border-sage-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.2em] text-sage-200 font-semibold">Autumn Conservatory Harvest</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-cream-50 mt-1">Seasonal Botanical Specials</h2>
+                </div>
+                <a href="#menu" class="inline-flex items-center gap-2 text-sm font-medium text-cream-200 hover:text-white transition-colors">
+                    <span>View Full Menu</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Special 1 -->
+                <div class="bg-sage-700/60 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-700 transition-colors">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-sage-600">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=300&q=80" alt="Cardamom Rose Cortado" onerror="this.src='https://placehold.co/150x150/4A6B53/FDFBF7?text=Cortado'" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="font-serif text-xl font-bold text-cream-50 truncate">Cardamom Rose Cortado</h3>
+                            <span class="text-sm font-bold text-terracotta-400">$5.25</span>
+                        </div>
+                        <p class="text-xs text-sage-100 line-clamp-2 mt-1">Double ristretto, crushed green cardamom, Damascus rosewater mist.</p>
+                        <button onclick="quickAddSpecial(2)" class="mt-2.5 text-xs font-semibold text-cream-50 underline decoration-terracotta-400 underline-offset-4 hover:text-terracotta-400 transition-colors">
+                            + Quick Add to Bag
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Special 2 -->
+                <div class="bg-sage-700/60 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-700 transition-colors">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-sage-600">
+                        <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=300&q=80" alt="Ceremonial Matcha & Yuzu" onerror="this.src='https://placehold.co/150x150/4A6B53/FDFBF7?text=Matcha'" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="font-serif text-xl font-bold text-cream-50 truncate">Uji Matcha Cloud</h3>
+                            <span class="text-sm font-bold text-terracotta-400">$6.00</span>
+                        </div>
+                        <p class="text-xs text-sage-100 line-clamp-2 mt-1">First-harvest ceremonial Uji matcha whisked over vanilla bean oat cream.</p>
+                        <button onclick="quickAddSpecial(5)" class="mt-2.5 text-xs font-semibold text-cream-50 underline decoration-terracotta-400 underline-offset-4 hover:text-terracotta-400 transition-colors">
+                            + Quick Add to Bag
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Special 3 -->
+                <div class="bg-sage-700/60 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-700 transition-colors">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-sage-600">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80" alt="Fig & Pistachio Galette" onerror="this.src='https://placehold.co/150x150/4A6B53/FDFBF7?text=Pastry'" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="font-serif text-xl font-bold text-cream-50 truncate">Roasted Fig & Honey Tart</h3>
+                            <span class="text-sm font-bold text-terracotta-400">$5.75</span>
+                        </div>
+                        <p class="text-xs text-sage-100 line-clamp-2 mt-1">Flaky cultured-butter pastry, black mission figs, thyme blossom honey.</p>
+                        <button onclick="quickAddSpecial(9)" class="mt-2.5 text-xs font-semibold text-cream-50 underline decoration-terracotta-400 underline-offset-4 hover:text-terracotta-400 transition-colors">
+                            + Quick Add to Bag
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         3. ABOUT SECTION (OUR STORY & CONSERVATORY)
+    =========================================== -->
+    <section id="about" class="py-20 md:py-28 bg-cream-100/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Image Grid -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6">
+                    <div class="space-y-4 sm:space-y-6">
+                        <div class="rounded-3xl overflow-hidden shadow-card aspect-[3/4] bg-cream-200">
+                            <img 
+                                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=80" 
+                                alt="Barista pouring precision latte art"
+                                onerror="this.src='https://placehold.co/500x650/DFD2B9/2C1D16?text=Artisan+Pour'"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            >
+                        </div>
+                        <div class="bg-sage-600 text-cream-50 p-6 rounded-3xl shadow-card">
+                            <i class="fa-solid fa-leaf text-2xl text-sage-200 mb-3"></i>
+                            <h4 class="font-serif text-2xl font-bold">Zero-Waste Roastery</h4>
+                            <p class="text-xs text-sage-100 mt-1.5 leading-relaxed">All coffee chaff & spent grounds nourish our indoor conservatory herbs and local community gardens.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 sm:space-y-6 pt-8">
+                        <div class="bg-cream-50 p-6 rounded-3xl shadow-card border border-cream-200">
+                            <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500">Est. 2019</span>
+                            <h4 class="font-serif text-2xl font-bold text-espresso-900 mt-1">Rooted in Slow Living</h4>
+                            <p class="text-xs text-espresso-600 mt-1.5 leading-relaxed">Designed as a quiet sanctuary away from city rush—surrounded by monstera, olive trees, and warm terracotta.</p>
+                        </div>
+                        <div class="rounded-3xl overflow-hidden shadow-card aspect-[3/4] bg-cream-200">
+                            <img 
+                                src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=700&q=80" 
+                                alt="Cozy cafe seating surrounded by indoor plants"
+                                onerror="this.src='https://placehold.co/500x650/C5D5CA/1D120D?text=Botanical+Space'"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Story & Values -->
+                <div class="lg:col-span-6 space-y-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-[0.2em] text-sage-600">Our Philosophy</span>
+                        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso-900 mt-2 leading-tight">
+                            Cultivating Connection Through Coffee & Flora.
+                        </h2>
+                        <p class="text-espresso-600 mt-4 leading-relaxed">
+                            Beans & Bloom began with a simple dream: to unite specialty third-wave coffee roasting with the restorative tranquility of a botanical greenhouse. We partner directly with high-altitude family farms in Ethiopia, Colombia, and Guatemala, roasting in small batches every Tuesday and Friday.
+                        </p>
+                    </div>
+
+                    <!-- Three Core Pillars -->
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-cream-50 border border-cream-200/80 shadow-sm">
+                            <div class="w-11 h-11 rounded-xl bg-sage-100 text-sage-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-espresso-900">Ethical Direct-Trade Sourcing</h3>
+                                <p class="text-sm text-espresso-600 mt-0.5">We pay 35% above Fair Trade minimums to support regenerative agroforestry and farm-level sustainability.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-cream-50 border border-cream-200/80 shadow-sm">
+                            <div class="w-11 h-11 rounded-xl bg-terracotta-400/15 text-terracotta-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-mortar-pestle"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-espresso-900">Fresh Botanical Infusions</h3>
+                                <p class="text-sm text-espresso-600 mt-0.5">Our syrups are cold-steeped in-house using organic culinary lavender, rosemary, cardamom pods, and wildflower honey.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-cream-50 border border-cream-200/80 shadow-sm">
+                            <div class="w-11 h-11 rounded-xl bg-cream-200 text-espresso-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-espresso-900">Cozy Community Conservatory</h3>
+                                <p class="text-sm text-espresso-600 mt-0.5">Sun-drenched reading nooks, acoustic Sunday mornings, and a curated plant shop where every table centerpiece is adoptable.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location & Hours Card -->
+                    <div class="p-6 rounded-2xl bg-espresso-800 text-cream-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-terracotta-400 text-xs font-bold uppercase tracking-wider">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Visit The Glasshouse</span>
+                            </div>
+                            <p class="font-serif text-xl font-semibold">418 Botanical Way, Garden District</p>
+                            <p class="text-xs text-cream-200">Mon–Fri: 7:00 AM – 7:00 PM • Sat–Sun: 8:00 AM – 8:00 PM</p>
+                        </div>
+                        <a href="#menu" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-cream-50 text-espresso-900 hover:bg-cream-200 text-xs font-bold uppercase tracking-wider transition-colors flex-shrink-0">
+                            Order Ahead
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         4. INTERACTIVE MENU SECTION
+    =========================================== -->
+    <section id="menu" class="py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-sage-600">Crafted To Order</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso-900 mt-2">Seasonal Cafe Menu</h2>
+                <p class="text-espresso-600 mt-3 text-sm sm:text-base">
+                    Customize your milk, temperature, or sweetness, and add straight to your order bag for seamless table service or pickup.
+                </p>
+            </div>
+
+            <!-- Category Filter Pills & Search -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
+                <div id="category-filters" class="flex flex-wrap items-center justify-center gap-2">
+                    <button data-category="all" onclick="filterMenu('all')" class="filter-btn active px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-espresso-800 text-cream-50 shadow-sm">
+                        All Offerings
+                    </button>
+                    <button data-category="espresso" onclick="filterMenu('espresso')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
+                        Espresso & Brews
+                    </button>
+                    <button data-category="botanical" onclick="filterMenu('botanical')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
+                        Botanical Teas & Lattes
+                    </button>
+                    <button data-category="pastries" onclick="filterMenu('pastries')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
+                        Artisan Pastries
+                    </button>
+                </div>
+
+                <!-- Quick Search Input -->
+                <div class="relative w-full md:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-espresso-600/60 text-sm"></i>
+                    <input 
+                        type="text" 
+                        id="menu-search" 
+                        oninput="handleSearch(this.value)" 
+                        placeholder="Search drinks or pastries..." 
+                        class="w-full pl-10 pr-4 py-2.5 rounded-full bg-cream-100 border border-cream-200 text-sm text-espresso-900 placeholder-espresso-600/60 focus:outline-none focus:border-sage-600 focus:bg-white transition-colors"
+                    >
+                </div>
+            </div>
+
+            <!-- Menu Items Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                <!-- Populated dynamically via JavaScript -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="menu-empty" class="hidden text-center py-16 bg-cream-100/60 rounded-3xl border border-cream-200">
+                <i class="fa-solid fa-mug-hot text-4xl text-sage-400 mb-3"></i>
+                <h3 class="font-serif text-2xl font-bold text-espresso-900">No matching treats found</h3>
+                <p class="text-sm text-espresso-600 mt-1">Try adjusting your search term or exploring another category.</p>
+                <button onclick="resetFilters()" class="mt-4 px-5 py-2 rounded-full bg-sage-600 text-cream-50 text-xs font-semibold">Reset Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+    <footer class="bg-espresso-900 text-cream-200 pt-16 pb-10 border-t border-espresso-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-espresso-800">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-sage-600 text-cream-50 flex items-center justify-center">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <span class="font-serif text-2xl font-bold text-cream-50">Beans & Bloom</span>
+                    </div>
+                    <p class="text-sm text-cream-300 max-w-md leading-relaxed">
+                        A botanical coffee house dedicated to small-batch specialty roasting, house-crafted floral infusions, and mindful community gathering.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#home" aria-label="Instagram" class="w-9 h-9 rounded-full bg-espresso-800 hover:bg-sage-600 text-cream-100 flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#home" aria-label="TikTok" class="w-9 h-9 rounded-full bg-espresso-800 hover:bg-sage-600 text-cream-100 flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#home" aria-label="Spotify Cafe Playlist" class="w-9 h-9 rounded-full bg-espresso-800 hover:bg-sage-600 text-cream-100 flex items-center justify-center transition-colors"><i class="fa-brands fa-spotify"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-cream-50 mb-4">Explore</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#home" class="hover:text-terracotta-400 transition-colors">Home</a></li>
+                        <li><a href="#specials" class="hover:text-terracotta-400 transition-colors">Seasonal Specials</a></li>
+                        <li><a href="#about" class="hover:text-terracotta-400 transition-colors">Our Story & Values</a></li>
+                        <li><a href="#menu" class="hover:text-terracotta-400 transition-colors">Full Menu</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-cream-50 mb-4">Glasshouse Hours</h4>
+                    <ul class="space-y-2 text-sm text-cream-300">
+                        <li>Mon – Fri: 7:00 AM – 7:00 PM</li>
+                        <li>Sat – Sun: 8:00 AM – 8:00 PM</li>
+                        <li class="pt-2 text-sage-400 font-medium">418 Botanical Way, Suite B</li>
+                        <li>hello@beansandbloom.cafe</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-300/70 gap-4">
+                <p>&copy; 2026 Beans & Bloom Roastery & Conservatory. All rights reserved.</p>
+                <p>Crafted with botanical warmth & single-origin espresso.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         5A. SLIDE-OUT SHOPPING CART DRAWER
+    =========================================== -->
+    <div id="cart-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-espresso-900/50 backdrop-blur-xs z-50 hidden transition-opacity opacity-0"></div>
+    
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream-50 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col border-l border-cream-200">
+        <!-- Drawer Header -->
+        <div class="px-6 py-5 bg-cream-100 border-b border-cream-200 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-bag-shopping text-sage-600 text-lg"></i>
+                <h3 class="font-serif text-2xl font-bold text-espresso-900">Your Order Bag</h3>
+            </div>
+            <button onclick="toggleCartDrawer(false)" aria-label="Close Cart" class="w-9 h-9 rounded-full bg-cream-200/70 hover:bg-cream-300 text-espresso-800 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items Container -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Cart Empty State -->
+        <div id="cart-empty-state" class="flex-1 flex flex-col items-center justify-center p-8 text-center">
+            <div class="w-20 h-20 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-seedling text-3xl"></i>
+            </div>
+            <h4 class="font-serif text-2xl font-bold text-espresso-900">Your bag is empty</h4>
+            <p class="text-sm text-espresso-600 mt-1.5 max-w-xs">
+                Explore our botanical lattes, single-origin pour-overs, and warm pastries to start your order.
+            </p>
+            <button onclick="toggleCartDrawer(false); document.getElementById('menu').scrollIntoView({behavior: 'smooth'})" class="mt-6 px-6 py-3 rounded-full bg-sage-600 hover:bg-sage-700 text-cream-50 text-sm font-semibold transition-colors">
+                Browse Menu
+            </button>
+        </div>
+
+        <!-- Cart Footer / Summary -->
+        <div id="cart-footer" class="hidden p-6 bg-cream-100 border-t border-cream-200 space-y-4">
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between text-espresso-600">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-medium text-espresso-900">$0.00</span>
+                </div>
+                <div class="flex justify-between text-espresso-600">
+                    <span>Estimated Tax (8.5%)</span>
+                    <span id="cart-tax" class="font-medium text-espresso-900">$0.00</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-espresso-900 pt-2 border-t border-cream-200">
+                    <span>Total</span>
+                    <span id="cart-total" class="font-serif text-2xl text-sage-700">$0.00</span>
+                </div>
+            </div>
+
+            <button onclick="openCheckoutModal()" class="w-full py-4 px-6 rounded-2xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 active:scale-[0.99]">
+                <i class="fa-solid fa-lock text-xs"></i>
+                <span>Proceed to Checkout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==========================================
+         5B. SIMULATED PAYMENT GATEWAY MODAL
+    =========================================== -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-espresso-900/65 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-cream-50 w-full max-w-2xl rounded-3xl shadow-2xl border border-cream-200 overflow-hidden my-8 animate-fadeIn">
+            
+            <!-- Modal Top Header -->
+            <div class="px-6 py-4 bg-espresso-900 text-cream-50 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-sage-600 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-bold leading-none">Beans & Bloom Pay</h3>
+                        <span class="text-[11px] text-cream-300">256-Bit Encrypted Cafe Checkout</span>
+                    </div>
+                </div>
+                <button onclick="closeCheckoutModal()" aria-label="Close Checkout" class="w-8 h-8 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- STEP 1: CHECKOUT FORM -->
+            <div id="checkout-form-view" class="p-6 sm:p-8 space-y-6 max-h-[82vh] overflow-y-auto">
+                
+                <!-- Order Fulfillment Toggle & Customer Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-serif text-xl font-bold text-espresso-900">1. Order Details</h4>
+                        <!-- Pickup vs Table/Delivery Toggle -->
+                        <div class="inline-flex rounded-xl bg-cream-200/80 p-1">
+                            <button type="button" id="btn-mode-pickup" onclick="setFulfillmentMode('pickup')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-cream-50 text-espresso-900 shadow-xs transition-all">
+                                <i class="fa-solid fa-store mr-1 text-sage-600"></i> Cafe Pickup
+                            </button>
+                            <button type="button" id="btn-mode-delivery" onclick="setFulfillmentMode('delivery')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-espresso-600 hover:text-espresso-900 transition-all">
+                                <i class="fa-solid fa-bicycle mr-1 text-terracotta-500"></i> Local Delivery
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-espresso-700 mb-1">Your Name *</label>
+                            <input type="text" id="cust-name" placeholder="e.g. Maya Lin" class="w-full px-4 py-2.5 rounded-xl bg-white border border-cream-300 text-sm focus:outline-none focus:border-sage-600">
+                        </div>
+                        <div>
+                            <label id="location-label" class="block text-xs font-semibold text-espresso-700 mb-1">Table Number or Pickup Note</label>
+                            <input type="text" id="cust-location" placeholder="e.g. Conservatory Table 4" class="w-full px-4 py-2.5 rounded-xl bg-white border border-cream-300 text-sm focus:outline-none focus:border-sage-600">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Method Selector Tabs -->
+                <div class="space-y-4 pt-2 border-t border-cream-200">
+                    <h4 class="font-serif text-xl font-bold text-espresso-900">2. Select Payment Method</h4>
+                    
+                    <div class="grid grid-cols-3 gap-2.5">
+                        <button type="button" onclick="selectPaymentTab('card')" id="tab-card" class="pay-tab flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-3 rounded-xl border-2 border-sage-600 bg-sage-50 text-sage-800 font-semibold text-xs transition-all">
+                            <i class="fa-regular fa-credit-card text-base"></i>
+                            <span>Credit / Debit</span>
+                        </button>
+                        <button type="button" onclick="selectPaymentTab('upi')" id="tab-upi" class="pay-tab flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-3 rounded-xl border border-cream-300 bg-white text-espresso-700 hover:bg-cream-100 font-semibold text-xs transition-all">
+                            <i class="fa-solid fa-qrcode text-base"></i>
+                            <span>UPI / Instant QR</span>
+                        </button>
+                        <button type="button" onclick="selectPaymentTab('wallet')" id="tab-wallet" class="pay-tab flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-3 rounded-xl border border-cream-300 bg-white text-espresso-700 hover:bg-cream-100 font-semibold text-xs transition-all">
+                            <i class="fa-solid fa-wallet text-base"></i>
+                            <span>Digital Wallet</span>
+                        </button>
+                    </div>
+
+                    <!-- TAB A: CREDIT / DEBIT CARD WITH LIVE PREVIEW -->
+                    <div id="panel-card" class="space-y-4 pt-2">
+                        <!-- Live Interactive Card Visual -->
+                        <div class="credit-card-bg text-cream-50 rounded-2xl p-5 shadow-lg relative overflow-hidden max-w-sm mx-auto">
+                            <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-sage-400/20 blur-xl"></div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="text-xs uppercase tracking-widest text-cream-200 font-semibold">Beans & Bloom Pay</span>
+                                <i id="card-brand-icon" class="fa-brands fa-cc-visa text-2xl text-cream-100"></i>
+                            </div>
+                            <p id="preview-card-number" class="font-mono text-lg sm:text-xl tracking-widest mb-5">•••• •••• •••• 4242</p>
+                            <div class="flex items-center justify-between text-xs">
+                                <div>
+                                    <span class="text-[10px] uppercase text-cream-300 block">Cardholder</span>
+                                    <span id="preview-card-holder" class="font-medium tracking-wide uppercase">YOUR NAME</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase text-cream-300 block">Expires</span>
+                                    <span id="preview-card-expiry" class="font-mono font-medium">12/28</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Inputs -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-semibold text-espresso-700 mb-1">Card Number</label>
+                                <div class="relative">
+                                    <input type="text" id="card-number" maxlength="19" oninput="formatCardNumber(this)" placeholder="4532 8910 2345 4242" class="w-full pl-4 pr-10 py-2.5 rounded-xl bg-white border border-cream-300 font-mono text-sm focus:outline-none focus:border-sage-600">
+                                    <i class="fa-solid fa-credit-card absolute right-3.5 top-1/2 -translate-y-1/2 text-espresso-400 text-sm"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-espresso-700 mb-1">Expiry Date (MM/YY)</label>
+                                <input type="text" id="card-expiry" maxlength="5" oninput="formatExpiry(this)" placeholder="09/28" class="w-full px-4 py-2.5 rounded-xl bg-white border border-cream-300 font-mono text-sm focus:outline-none focus:border-sage-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-espresso-700 mb-1">Security Code (CVC)</label>
+                                <input type="password" id="card-cvc" maxlength="4" placeholder="•••" class="w-full px-4 py-2.5 rounded-xl bg-white border border-cream-300 font-mono text-sm focus:outline-none focus:border-sage-600">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB B: UPI / QR CODE INSTANT PAY -->
+                    <div id="panel-upi" class="hidden pt-2">
+                        <div class="bg-white border border-cream-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-6">
+                            <!-- Crisp Generated SVG QR Code -->
+                            <div class="p-3 bg-cream-50 rounded-2xl border border-cream-300 flex-shrink-0">
+                                <svg class="w-32 h-32 text-espresso-900" viewBox="0 0 100 100" fill="currentColor">
+                                    <rect x="10" y="10" width="25" height="25" rx="3" fill="none" stroke="currentColor" stroke-width="5"/>
+                                    <rect x="17" y="17" width="11" height="11" rx="1"/>
+                                    <rect x="65" y="10" width="25" height="25" rx="3" fill="none" stroke="currentColor" stroke-width="5"/>
+                                    <rect x="72" y="17" width="11" height="11" rx="1"/>
+                                    <rect x="10" y="65" width="25" height="25" rx="3" fill="none" stroke="currentColor" stroke-width="5"/>
+                                    <rect x="17" y="72" width="11" height="11" rx="1"/>
+                                    <rect x="44" y="12" width="6" height="6"/><rect x="52" y="20" width="6" height="12"/>
+                                    <rect x="42" y="42" width="16" height="16" rx="3" fill="#4A6B53"/>
+                                    <rect x="12" y="45" width="12" height="6"/><rect x="28" y="48" width="8" height="8"/>
+                                    <rect x="66" y="45" width="10" height="6"/><rect x="82" y="45" width="8" height="14"/>
+                                    <rect x="45" y="66" width="6" height="12"/><rect x="55" y="75" width="14" height="6"/>
+                                    <rect x="75" y="68" width="15" height="6"/><rect x="68" y="82" width="10" height="8"/>
+                                </svg>
+                            </div>
+                            <div class="space-y-3 flex-1 text-center sm:text-left">
+                                <span class="inline-block px-2.5 py-1 rounded-md bg-sage-100 text-sage-700 text-[11px] font-bold">Instant Scan & Pay</span>
+                                <h5 class="font-serif text-xl font-bold text-espresso-900">Scan with any UPI or Banking App</h5>
+                                <p class="text-xs text-espresso-600">Or enter your UPI ID below to receive an instant payment prompt on your phone.</p>
+                                <input type="text" id="upi-id-input" placeholder="yourname@okaxis / @upi" class="w-full px-3.5 py-2 rounded-xl bg-cream-50 border border-cream-300 text-sm focus:outline-none focus:border-sage-600">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB C: DIGITAL WALLETS -->
+                    <div id="panel-wallet" class="hidden pt-2 space-y-3">
+                        <p class="text-xs text-espresso-600">Select an express digital wallet for one-tap biometric authorization:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center justify-between p-4 rounded-xl bg-white border-2 border-sage-600 cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-brands fa-apple-pay text-2xl text-espresso-900"></i>
+                                    <span class="text-sm font-semibold text-espresso-900">Apple Pay</span>
+                                </div>
+                                <input type="radio" name="wallet-choice" checked class="accent-sage-600 w-4 h-4">
+                            </label>
+                            <label class="flex items-center justify-between p-4 rounded-xl bg-white border border-cream-300 hover:border-sage-400 cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-brands fa-google-pay text-2xl text-espresso-900"></i>
+                                    <span class="text-sm font-semibold text-espresso-900">Google Pay</span>
+                                </div>
+                                <input type="radio" name="wallet-choice" class="accent-sage-600 w-4 h-4">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Validation Message Box -->
+                <div id="checkout-error" class="hidden p-3.5 rounded-xl bg-terracotta-500/10 border border-terracotta-500/30 text-terracotta-600 text-xs font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="checkout-error-text">Please complete your details before paying.</span>
+                </div>
+
+                <!-- Order Summary Mini Bar & Pay Button -->
+                <div class="pt-4 border-t border-cream-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-center sm:text-left">
+                        <span class="text-xs text-espresso-600 block">Total Amount Due</span>
+                        <span id="modal-pay-total" class="font-serif text-3xl font-bold text-espresso-900">$0.00</span>
+                    </div>
+                    <button type="button" onclick="processSimulatedPayment()" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-sage-600 hover:bg-sage-700 text-cream-50 font-bold text-sm shadow-glow transition-all flex items-center justify-center gap-2.5">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Complete Payment</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: PROCESSING SPINNER VIEW -->
+            <div id="checkout-processing-view" class="hidden p-12 text-center space-y-5">
+                <div class="relative w-20 h-20 mx-auto">
+                    <div class="absolute inset-0 rounded-full border-4 border-sage-200"></div>
+                    <div class="absolute inset-0 rounded-full border-4 border-sage-600 border-t-transparent animate-spin"></div>
+                    <div class="absolute inset-0 flex items-center justify-center text-sage-600">
+                        <i class="fa-solid fa-mug-hot text-2xl"></i>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-2xl font-bold text-espresso-900">Authorizing Your Order...</h4>
+                    <p class="text-sm text-espresso-600 mt-1">Connecting securely to Beans & Bloom Roastery POS</p>
+                </div>
+            </div>
+
+            <!-- STEP 3: INTERACTIVE ORDER RECEIPT / CONFIRMATION -->
+            <div id="checkout-receipt-view" class="hidden p-6 sm:p-8 text-center space-y-6">
+                <div class="w-16 h-16 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center mx-auto shadow-sm">
+                    <i class="fa-solid fa-check text-3xl"></i>
+                </div>
+
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-700 text-xs font-bold uppercase tracking-wider">Payment Successful</span>
+                    <h4 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-900 mt-2">Thank You, <span id="receipt-customer-name">Guest</span>!</h4>
+                    <p class="text-sm text-espresso-600 mt-1">Our baristas have received your ticket and started grinding your beans.</p>
+                </div>
+
+                <!-- Ticket Card -->
+                <div class="bg-cream-100 border border-cream-300 rounded-2xl p-5 max-w-md mx-auto text-left space-y-3 shadow-inner">
+                    <div class="flex justify-between items-center pb-3 border-b border-dashed border-cream-300">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-espresso-600 block">Order Number</span>
+                            <span id="receipt-order-id" class="font-mono font-bold text-base text-espresso-900">#BB-4829</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[10px] uppercase tracking-wider text-espresso-600 block">Est. Prep Time</span>
+                            <span class="font-bold text-sm text-terracotta-600"><i class="fa-regular fa-clock mr-1"></i>8–12 Mins</span>
+                        </div>
+                    </div>
+
+                    <div id="receipt-items-list" class="space-y-1.5 text-xs text-espresso-700 max-h-36 overflow-y-auto py-1">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <div class="pt-3 border-t border-dashed border-cream-300 flex justify-between items-center">
+                        <span class="text-xs font-semibold text-espresso-600" id="receipt-fulfillment-info">Cafe Pickup</span>
+                        <span id="receipt-total-paid" class="font-serif text-xl font-bold text-sage-700">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="finishAndResetOrder()" class="px-8 py-3.5 rounded-full bg-espresso-800 hover:bg-espresso-900 text-cream-50 text-sm font-semibold transition-colors">
+                        Back to Cafe
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==========================================
+         CUSTOM TOAST NOTIFICATION
+    =========================================== -->
+    <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none"></div>
+
+    <!-- ==========================================
+         JAVASCRIPT APPLICATION LOGIC
+    =========================================== -->
+    <script>
+        // 1. MENU DATASET (Rich, Botanical & Artisan Cafe Items)
+        const menuItems = [
+            {
+                id: 1,
+                name: "Single-Origin Pour Over",
+                category: "espresso",
+                price: 4.75,
+                description: "Hand-poured Ethiopian Yirgacheffe with bright jasmine, bergamot, and white peach tasting notes.",
+                tags: ["Vegan", "Signature"],
+                image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/422C22/FDFBF7?text=Pour+Over",
+                options: ["Hot (12oz)", "Flash Iced (16oz)"]
+            },
+            {
+                id: 2,
+                name: "Cardamom Rose Cortado",
+                category: "espresso",
+                price: 5.25,
+                description: "Velvety double ristretto balanced with steamed milk, crushed green cardamom, and organic rosewater.",
+                tags: ["Signature", "Gluten-Free"],
+                image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/5C4033/FDFBF7?text=Cardamom+Cortado",
+                options: ["Oat Milk", "Whole Milk", "Almond Milk"]
+            },
+            {
+                id: 3,
+                name: "Cold Brew Botanical Tonic",
+                category: "espresso",
+                price: 5.50,
+                description: "18-hour steeped Colombian cold brew layered over artisanal botanical tonic water and expressed blood orange.",
+                tags: ["Vegan", "Gluten-Free"],
+                image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/2C1D16/FDFBF7?text=Cold+Brew+Tonic",
+                options: ["Regular Ice", "Light Ice"]
+            },
+            {
+                id: 4,
+                name: "Wildflower Lavender Latte",
+                category: "botanical",
+                price: 5.75,
+                description: "House-steeped culinary lavender syrup, raw wildflower honey, signature espresso, and silky microfoam.",
+                tags: ["Signature", "Gluten-Free"],
+                image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/4A6B53/FDFBF7?text=Lavender+Latte",
+                options: ["Oat Milk (Hot)", "Oat Milk (Iced)", "Whole Milk (Hot)"]
+            },
+            {
+                id: 5,
+                name: "Uji Matcha Vanilla Cloud",
+                category: "botanical",
+                price: 6.00,
+                description: "Ceremonial-grade first-harvest Uji matcha whisked to order over Madagascar vanilla bean oat milk.",
+                tags: ["Vegan", "Antioxidant"],
+                image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/395440/FDFBF7?text=Uji+Matcha",
+                options: ["Iced Oat", "Warm Oat", "Iced Almond"]
+            },
+            {
+                id: 6,
+                name: "Chamomile & Citrus Tisane",
+                category: "botanical",
+                price: 4.50,
+                description: "Whole Egyptian chamomile blossoms, lemon verbena leaves, and dried lemongrass steeped in a glass pot.",
+                tags: ["Caffeine-Free", "Vegan"],
+                image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/7D9B86/FDFBF7?text=Chamomile+Tea",
+                options: ["Unsweetened", "With Clover Honey"]
+            },
+            {
+                id: 7,
+                name: "Pistachio Rosewater Croissant",
+                category: "pastries",
+                price: 5.25,
+                description: "Twice-baked sourdough croissant filled with roasted Sicilian pistachio frangipane and crushed rose petals.",
+                tags: ["Baked Fresh"],
+                image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/C26343/FDFBF7?text=Pistachio+Croissant",
+                options: ["Warmed", "Room Temp"]
+            },
+            {
+                id: 8,
+                name: "Rosemary Sea Salt Focaccia",
+                category: "pastries",
+                price: 4.95,
+                description: "Olive oil-rich hearth focaccia topped with conservatory rosemary sprigs, flaky Maldon salt, and confit garlic.",
+                tags: ["Vegan"],
+                image: "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/5C4033/FDFBF7?text=Herb+Focaccia",
+                options: ["Warmed + Olive Oil", "As-Is"]
+            },
+            {
+                id: 9,
+                name: "Roasted Fig & Honey Tart",
+                category: "pastries",
+                price: 5.75,
+                description: "Crisp almond shortcrust layered with whipped mascarpone, black mission figs, and thyme blossom honey.",
+                tags: ["Signature"],
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/A64D30/FDFBF7?text=Fig+Tart",
+                options: ["Standard Plate", "To-Go Box"]
+            }
+        ];
+
+        // 2. APPLICATION STATE
+        let cart = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let fulfillmentMode = 'pickup';
+        let activePaymentTab = 'card';
+
+        // 3. INITIALIZE ON LOAD
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu();
+            updateCartUI();
+        });
+
+        // 4. RENDER MENU GRID
+        function renderMenu() {
+            const grid = document.getElementById('menu-grid');
+            const emptyState = document.getElementById('menu-empty');
+
+            const filtered = menuItems.filter(item => {
+                const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesCat && matchesSearch;
             });
-        </script>
-    </body>
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => `
+                <article class="group bg-white rounded-3xl overflow-hidden border border-cream-200/90 shadow-card hover:shadow-soft transition-all duration-300 flex flex-col">
+                    <!-- Image Header -->
+                    <div class="relative aspect-[4/3] overflow-hidden bg-cream-200">
+                        <img 
+                            src="${item.image}" 
+                            alt="${item.name}" 
+                            onerror="this.src='${item.fallback}'"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        >
+                        <!-- Dietary / Feature Badges -->
+                        <div class="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5">
+                            ${item.tags.map(tag => `
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide backdrop-blur-md ${
+                                    tag === 'Vegan' ? 'bg-sage-700/90 text-cream-50' :
+                                    tag === 'Signature' ? 'bg-terracotta-500/90 text-white' :
+                                    'bg-cream-50/90 text-espresso-900'
+                                }">
+                                    ${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Card Content -->
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-start justify-between gap-2">
+                                <h3 class="font-serif text-2xl font-bold text-espresso-900 leading-snug">${item.name}</h3>
+                                <span class="font-sans text-base font-bold text-sage-700 bg-sage-50 px-2.5 py-1 rounded-lg border border-sage-200/60">
+                                    $${item.price.toFixed(2)}
+                                </span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso-600 mt-2 leading-relaxed">
+                                ${item.description}
+                            </p>
+                        </div>
+
+                        <!-- Customization Selector & Add Button -->
+                        <div class="pt-3 border-t border-cream-100 space-y-3">
+                            <div>
+                                <label for="opt-${item.id}" class="sr-only">Customize ${item.name}</label>
+                                <select id="opt-${item.id}" class="w-full px-3.5 py-2 rounded-xl bg-cream-50 border border-cream-200 text-xs font-medium text-espresso-800 focus:outline-none focus:border-sage-600 cursor-pointer">
+                                    ${item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                                </select>
+                            </div>
+
+                            <button 
+                                onclick="addToCart(${item.id})" 
+                                class="w-full py-3 px-4 rounded-xl bg-espresso-800 hover:bg-sage-600 text-cream-50 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
+                            >
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Add to Bag</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // 5. FILTER & SEARCH HANDLERS
+        function filterMenu(category) {
+            activeCategory = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.remove('bg-cream-100', 'text-espresso-700', 'hover:bg-cream-200');
+                    btn.classList.add('bg-espresso-800', 'text-cream-50', 'shadow-sm');
+                } else {
+                    btn.classList.add('bg-cream-100', 'text-espresso-700', 'hover:bg-cream-200');
+                    btn.classList.remove('bg-espresso-800', 'text-cream-50', 'shadow-sm');
+                }
+            });
+            renderMenu();
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.trim();
+            renderMenu();
+        }
+
+        function resetFilters() {
+            searchQuery = '';
+            document.getElementById('menu-search').value = '';
+            filterMenu('all');
+        }
+
+        // 6. CART MANAGEMENT
+        function addToCart(itemId) {
+            const product = menuItems.find(m => m.id === itemId);
+            if (!product) return;
+
+            const selectEl = document.getElementById(`opt-${itemId}`);
+            const chosenOption = selectEl ? selectEl.value : product.options[0];
+            const cartKey = `${itemId}-${chosenOption}`;
+
+            const existing = cart.find(c => c.key === cartKey);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    key: cartKey,
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    option: chosenOption,
+                    image: product.image,
+                    fallback: product.fallback,
+                    qty: 1
+                });
+            }
+
+            updateCartUI(true);
+            showToast(`Added "${product.name}" (${chosenOption}) to bag`);
+        }
+
+        function quickAddSpecial(itemId) {
+            const product = menuItems.find(m => m.id === itemId);
+            if (!product) return;
+            const chosenOption = product.options[0];
+            const cartKey = `${itemId}-${chosenOption}`;
+
+            const existing = cart.find(c => c.key === cartKey);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    key: cartKey,
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    option: chosenOption,
+                    image: product.image,
+                    fallback: product.fallback,
+                    qty: 1
+                });
+            }
+
+            updateCartUI(true);
+            showToast(`Added "${product.name}" to your order bag`);
+        }
+
+        function updateItemQty(cartKey, delta) {
+            const index = cart.findIndex(c => c.key === cartKey);
+            if (index === -1) return;
+
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeCartItem(cartKey) {
+            cart = cart.filter(c => c.key !== cartKey);
+            updateCartUI();
+        }
+
+        function calculateTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const tax = subtotal * 0.085;
+            const total = subtotal + tax;
+            return { subtotal, tax, total };
+        }
+
+        function updateCartUI(animateBadge = false) {
+            const badge = document.getElementById('nav-cart-badge');
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.textContent = totalCount;
+
+            if (animateBadge) {
+                badge.classList.remove('badge-pop');
+                void badge.offsetWidth; // Trigger reflow
+                badge.classList.add('badge-pop');
+            }
+
+            const container = document.getElementById('cart-items-container');
+            const emptyState = document.getElementById('cart-empty-state');
+            const footer = document.getElementById('cart-footer');
+
+            if (cart.length === 0) {
+                container.classList.add('hidden');
+                footer.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            container.classList.remove('hidden');
+            footer.classList.remove('hidden');
+
+            container.innerHTML = cart.map(item => `
+                <div class="flex items-center gap-3.5 bg-white p-3.5 rounded-2xl border border-cream-200 shadow-xs">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src='${item.fallback}'" class="w-16 h-16 rounded-xl object-cover flex-shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-start justify-between gap-2">
+                            <h4 class="font-serif text-lg font-bold text-espresso-900 truncate">${item.name}</h4>
+                            <button onclick="removeCartItem('${item.key}')" aria-label="Remove item" class="text-espresso-400 hover:text-terracotta-500 text-xs p-1">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-sage-700 font-medium">${item.option}</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-sm font-bold text-espresso-900">$${(item.price * item.qty).toFixed(2)}</span>
+                            <div class="inline-flex items-center bg-cream-100 rounded-lg border border-cream-200">
+                                <button onclick="updateItemQty('${item.key}', -1)" class="w-7 h-7 flex items-center justify-center text-espresso-700 hover:bg-cream-200 rounded-l-lg text-xs font-bold">-</button>
+                                <span class="px-2.5 text-xs font-bold text-espresso-900">${item.qty}</span>
+                                <button onclick="updateItemQty('${item.key}', 1)" class="w-7 h-7 flex items-center justify-center text-espresso-700 hover:bg-cream-200 rounded-r-lg text-xs font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const { subtotal, tax, total } = calculateTotals();
+            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('modal-pay-total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // 7. DRAWER & MOBILE MENU CONTROLS
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-backdrop');
+
+            if (open) {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-x-full');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 8. PAYMENT GATEWAY MODAL LOGIC
+        function openCheckoutModal() {
+            toggleCartDrawer(false);
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            // Reset views to step 1
+            document.getElementById('checkout-form-view').classList.remove('hidden');
+            document.getElementById('checkout-processing-view').classList.add('hidden');
+            document.getElementById('checkout-receipt-view').classList.add('hidden');
+            document.getElementById('checkout-error').classList.add('hidden');
+
+            const { total } = calculateTotals();
+            document.getElementById('modal-pay-total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function setFulfillmentMode(mode) {
+            fulfillmentMode = mode;
+            const btnPickup = document.getElementById('btn-mode-pickup');
+            const btnDelivery = document.getElementById('btn-mode-delivery');
+            const locLabel = document.getElementById('location-label');
+            const locInput = document.getElementById('cust-location');
+
+            if (mode === 'pickup') {
+                btnPickup.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-cream-50 text-espresso-900 shadow-xs transition-all";
+                btnDelivery.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold text-espresso-600 hover:text-espresso-900 transition-all";
+                locLabel.textContent = "Table Number or Pickup Note";
+                locInput.placeholder = "e.g. Conservatory Table 4";
+            } else {
+                btnDelivery.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-cream-50 text-espresso-900 shadow-xs transition-all";
+                btnPickup.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold text-espresso-600 hover:text-espresso-900 transition-all";
+                locLabel.textContent = "Local Delivery Address *";
+                locInput.placeholder = "e.g. 210 Elm Street, Apt 3B";
+            }
+        }
+
+        function selectPaymentTab(tab) {
+            activePaymentTab = tab;
+            ['card', 'upi', 'wallet'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const panel = document.getElementById(`panel-${t}`);
+                if (t === tab) {
+                    btn.className = "pay-tab flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-3 rounded-xl border-2 border-sage-600 bg-sage-50 text-sage-800 font-semibold text-xs transition-all";
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = "pay-tab flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-3 rounded-xl border border-cream-300 bg-white text-espresso-700 hover:bg-cream-100 font-semibold text-xs transition-all";
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+
+        // Live Card Formatting & Preview Sync
+        function formatCardNumber(input) {
+            let val = input.value.replace(/\D/g, '').substring(0, 16);
+            let formatted = val.match(/.{1,4}/g)?.join(' ') || '';
+            input.value = formatted;
+
+            document.getElementById('preview-card-number').textContent = formatted || '•••• •••• •••• 4242';
+            const brandIcon = document.getElementById('card-brand-icon');
+            if (val.startsWith('5')) {
+                brandIcon.className = 'fa-brands fa-cc-mastercard text-2xl text-terracotta-400';
+            } else if (val.startsWith('3')) {
+                brandIcon.className = 'fa-brands fa-cc-amex text-2xl text-sage-200';
+            } else {
+                brandIcon.className = 'fa-brands fa-cc-visa text-2xl text-cream-100';
+            }
+        }
+
+        function formatExpiry(input) {
+            let val = input.value.replace(/\D/g, '').substring(0, 4);
+            if (val.length >= 3) {
+                val = val.substring(0, 2) + '/' + val.substring(2);
+            }
+            input.value = val;
+            document.getElementById('preview-card-expiry').textContent = val || '12/28';
+        }
+
+        // Sync Customer Name to Live Card Preview
+        document.getElementById('cust-name').addEventListener('input', function(e) {
+            document.getElementById('preview-card-holder').textContent = e.target.value.trim() || 'YOUR NAME';
+        });
+
+        // Validate & Process Payment
+        function processSimulatedPayment() {
+            const name = document.getElementById('cust-name').value.trim();
+            const locationVal = document.getElementById('cust-location').value.trim();
+            const errorBox = document.getElementById('checkout-error');
+            const errorText = document.getElementById('checkout-error-text');
+
+            if (!name) {
+                errorText.textContent = "Please enter your name for the barista order ticket.";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            if (fulfillmentMode === 'delivery' && !locationVal) {
+                errorText.textContent = "Please provide a local delivery address.";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            if (activePaymentTab === 'card') {
+                const cardNum = document.getElementById('card-number').value.replace(/\s/g, '');
+                const expiry = document.getElementById('card-expiry').value.trim();
+                const cvc = document.getElementById('card-cvc').value.trim();
+                if (cardNum.length < 13 || expiry.length < 5 || cvc.length < 3) {
+                    errorText.textContent = "Please enter valid card details (or switch to UPI / Wallet).";
+                    errorBox.classList.remove('hidden');
+                    return;
+                }
+            }
+
+            errorBox.classList.add('hidden');
+
+            // Switch to Processing Animation
+            document.getElementById('checkout-form-view').classList.add('hidden');
+            document.getElementById('checkout-processing-view').classList.remove('hidden');
+
+            // Simulate gateway confirmation delay
+            setTimeout(() => {
+                showReceiptScreen(name, locationVal);
+            }, 1600);
+        }
+
+        function showReceiptScreen(customerName, locationVal) {
+            document.getElementById('checkout-processing-view').classList.add('hidden');
+            document.getElementById('checkout-receipt-view').classList.remove('hidden');
+
+            const { total } = calculateTotals();
+            const randomOrderNum = `#BB-${Math.floor(1000 + Math.random() * 9000)}`;
+
+            document.getElementById('receipt-customer-name').textContent = customerName;
+            document.getElementById('receipt-order-id').textContent = randomOrderNum;
+            document.getElementById('receipt-total-paid').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('receipt-fulfillment-info').textContent = 
+                fulfillmentMode === 'pickup' 
+                ? `Pickup • ${locationVal || 'Espresso Counter'}` 
+                : `Delivery • ${locationVal}`;
+
+            document.getElementById('receipt-items-list').innerHTML = cart.map(item => `
+                <div class="flex justify-between">
+                    <span>${item.qty}x ${item.name} <span class="text-espresso-500">(${item.option})</span></span>
+                    <span class="font-semibold">$${(item.price * item.qty).toFixed(2)}</span>
+                </div>
+            `).join('');
+        }
+
+        function finishAndResetOrder() {
+            cart = [];
+            updateCartUI();
+            closeCheckoutModal();
+            showToast("Order confirmed! Your barista is preparing your items.");
+        }
+
+        // 9. TOAST FEEDBACK HELPER
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "toast-enter bg-espresso-900 text-cream-50 px-5 py-3 rounded-full shadow-xl border border-espresso-700 text-xs sm:text-sm font-medium flex items-center gap-2.5 whitespace-nowrap";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-sage-400"></i><span>${message}</span>`;
+
+            container.innerHTML = '';
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 2800);
+        }
+    </script>
+</body>
 </html>
