@@ -134,9 +134,214 @@
         .credit-card-bg {
             background: linear-gradient(135deg, #2C3E35 0%, #1B110D 58%, #3B2820 100%);
         }
+
+        /* ==========================================
+           PROFESSIONAL SCROLL REVEAL & AMBIENT ANIMATIONS
+        =========================================== */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(32px) scale(0.985);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.reveal-left {
+            transform: translateX(-32px);
+        }
+        .reveal-on-scroll.reveal-right {
+            transform: translateX(32px);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        @keyframes pulseGlowSoft {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 125, 85, 0.35); }
+            50% { box-shadow: 0 0 0 10px rgba(200, 125, 85, 0); }
+        }
+        .ambient-pulse {
+            animation: pulseGlowSoft 3.5s infinite;
+        }
+
+        /* ==========================================
+           TIME-OF-DAY ADAPTIVE THEME ENGINE
+           (Bold Morning / Rich Afternoon / Evening Candlelight)
+        =========================================== */
+        body {
+            transition: background-color 0.7s ease, color 0.7s ease;
+        }
+
+        /* Bold Morning Sunlit Amber & Crisp Botanical Theme */
+        body.theme-morning {
+            background: linear-gradient(180deg, #FDF4E3 0%, #F7E8CE 100%) !important;
+            color: #1B110D !important;
+        }
+        body.theme-morning #navbar {
+            background-color: rgba(253, 244, 227, 0.95) !important;
+            border-bottom: 2px solid #D4A373 !important;
+            box-shadow: 0 8px 25px -8px rgba(184, 134, 85, 0.25) !important;
+        }
+        body.theme-morning .bg-cream-50 {
+            background-color: #FCF3E3 !important;
+        }
+        body.theme-morning .bg-cream-100,
+        body.theme-morning .bg-cream-100\/80,
+        body.theme-morning .bg-cream-100\/70,
+        body.theme-morning .bg-cream-100\/60 {
+            background-color: #F3E0C2 !important;
+        }
+        body.theme-morning .bg-white {
+            background-color: #FFFDF9 !important;
+            border-color: #D4A373 !important;
+            box-shadow: 0 10px 28px -6px rgba(168, 97, 59, 0.14) !important;
+        }
+        body.theme-morning .border-cream-200,
+        body.theme-morning .border-cream-200\/80,
+        body.theme-morning .border-cream-200\/90,
+        body.theme-morning .border-cream-300 {
+            border-color: #D9B382 !important;
+        }
+        body.theme-morning .text-espresso-900 {
+            color: #140B07 !important;
+        }
+        body.theme-morning .text-sage-600,
+        body.theme-morning .text-sage-700 {
+            color: #1F4D36 !important;
+        }
+        body.theme-morning .bg-sage-700 {
+            background-color: #1F4D36 !important;
+        }
+        body.theme-morning .bg-terracotta-500 {
+            background-color: #C25924 !important;
+        }
+
+        /* Bold Afternoon Emerald Glasshouse & Terracotta Theme */
+        body.theme-afternoon {
+            background: linear-gradient(180deg, #E2EDE6 0%, #D2E3D9 100%) !important;
+            color: #13221B !important;
+        }
+        body.theme-afternoon #navbar {
+            background-color: rgba(226, 237, 230, 0.95) !important;
+            border-bottom: 2px solid #3C594B !important;
+            box-shadow: 0 8px 25px -8px rgba(44, 62, 53, 0.28) !important;
+        }
+        body.theme-afternoon .bg-cream-50 {
+            background-color: #E5EFE9 !important;
+        }
+        body.theme-afternoon .bg-cream-100,
+        body.theme-afternoon .bg-cream-100\/80,
+        body.theme-afternoon .bg-cream-100\/70,
+        body.theme-afternoon .bg-cream-100\/60 {
+            background-color: #CEE0D6 !important;
+        }
+        body.theme-afternoon .bg-white {
+            background-color: #F7FBF9 !important;
+            border-color: #6E8F7F !important;
+            box-shadow: 0 10px 28px -6px rgba(32, 46, 39, 0.16) !important;
+        }
+        body.theme-afternoon .border-cream-200,
+        body.theme-afternoon .border-cream-200\/80,
+        body.theme-afternoon .border-cream-200\/90,
+        body.theme-afternoon .border-cream-300,
+        body.theme-afternoon .border-sage-200 {
+            border-color: #7FA391 !important;
+        }
+        body.theme-afternoon .text-espresso-900,
+        body.theme-afternoon .text-espresso-800 {
+            color: #102119 !important;
+        }
+        body.theme-afternoon .text-espresso-700,
+        body.theme-afternoon .text-espresso-600 {
+            color: #274235 !important;
+        }
+        body.theme-afternoon .text-sage-600,
+        body.theme-afternoon .text-sage-700 {
+            color: #1B4D36 !important;
+        }
+        body.theme-afternoon .bg-sage-700 {
+            background-color: #1B4D36 !important;
+        }
+        body.theme-afternoon .bg-terracotta-500 {
+            background-color: #B85125 !important;
+        }
+
+        /* Evening Candlelit Hearth Mode */
+        body.theme-evening {
+            background-color: #16100C;
+            color: #F3EDE2;
+        }
+        body.theme-evening #navbar {
+            background-color: rgba(22, 16, 12, 0.92);
+            border-color: rgba(212, 163, 115, 0.22);
+        }
+        body.theme-evening .bg-cream-50 {
+            background-color: #1C1410 !important;
+        }
+        body.theme-evening .bg-cream-100,
+        body.theme-evening .bg-cream-100\/80,
+        body.theme-evening .bg-cream-100\/70,
+        body.theme-evening .bg-cream-100\/60 {
+            background-color: #241914 !important;
+        }
+        body.theme-evening .bg-white {
+            background-color: #261B15 !important;
+            color: #FAF7F2 !important;
+        }
+        body.theme-evening .bg-sage-50 {
+            background-color: #1E2B24 !important;
+        }
+        body.theme-evening .bg-sage-100 {
+            background-color: #26382F !important;
+            color: #DFE8E3 !important;
+        }
+        body.theme-evening .border-cream-200,
+        body.theme-evening .border-cream-200\/80,
+        body.theme-evening .border-cream-200\/90,
+        body.theme-evening .border-cream-300,
+        body.theme-evening .border-sage-200 {
+            border-color: rgba(212, 163, 115, 0.22) !important;
+        }
+        body.theme-evening .text-espresso-900,
+        body.theme-evening .text-espresso-800 {
+            color: #FAF7F2 !important;
+        }
+        body.theme-evening .text-espresso-700,
+        body.theme-evening .text-espresso-600 {
+            color: #D9C9AA !important;
+        }
+        body.theme-evening .text-sage-700,
+        body.theme-evening .text-sage-800 {
+            color: #9CC2AF !important;
+        }
+        body.theme-evening input,
+        body.theme-evening select {
+            background-color: #18110D !important;
+            color: #FAF7F2 !important;
+            border-color: rgba(212, 163, 115, 0.3) !important;
+        }
     </style>
 </head>
 <body class="bg-cream-50 text-espresso-800 font-sans antialiased selection:bg-sage-700 selection:text-cream-50 overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- ==========================================
+         0. AMBIENT TIME-OF-DAY & MOOD BAR
+    =========================================== -->
+    <div id="time-theme-banner" class="bg-espresso-900 text-cream-50 text-[11px] sm:text-xs py-2 px-4 border-b border-espresso-700/70">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span id="time-theme-icon" class="text-oat-400"><i class="fa-solid fa-sun"></i></span>
+                <span id="time-theme-status" class="font-medium tracking-wide">Sunlit Morning Conservatory • Auto-synced to your local time</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <span class="text-cream-300/70 hidden sm:inline mr-1">Ambience:</span>
+                <button type="button" onclick="applyTimeTheme('auto')" id="theme-btn-auto" class="px-2.5 py-0.5 rounded-full bg-sage-700 text-cream-50 font-bold text-[10px] transition-colors">Auto</button>
+                <button type="button" onclick="applyTimeTheme('morning')" id="theme-btn-morning" class="px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors">☀️ Morning</button>
+                <button type="button" onclick="applyTimeTheme('afternoon')" id="theme-btn-afternoon" class="px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors">🌤️ Afternoon</button>
+                <button type="button" onclick="applyTimeTheme('evening')" id="theme-btn-evening" class="px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors">🕯️ Evening</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ==========================================
          1. STICKY MULTI-PAGE NAVIGATION BAR
@@ -321,10 +526,10 @@
                 </div>
             </section>
 
-            <!-- Featured Seasonal Flight Strip (Clicking any item opens the Pop-up Modal) -->
+                    <!-- Featured Seasonal Flight Strip (Clicking any item opens the Pop-up Modal) -->
             <section class="py-12 bg-sage-700 text-cream-50 border-y border-sage-600">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 reveal-on-scroll">
                         <div>
                             <span class="text-xs uppercase tracking-[0.2em] text-oat-400 font-semibold">Conservatory & Hearth Signatures</span>
                             <h2 class="font-serif text-3xl sm:text-4xl font-bold text-cream-50 mt-1">Guest Favorites Across Kitchen & Bar</h2>
@@ -335,7 +540,7 @@
                         </button>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-on-scroll">
                         <!-- Flight 1: Cardamom Saffron Latte -->
                         <div onclick="openItemModal(10)" class="bg-sage-800/70 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-800 transition-colors cursor-pointer group">
                             <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80" alt="Cardamom Saffron Cortado Latte" onerror="this.src='https://placehold.co/150x150/3C594B/FAF7F2?text=Latte'" class="w-16 h-16 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform">
@@ -384,16 +589,66 @@
                 </div>
             </section>
 
+            <!-- ==========================================
+                 POETIC BOTANICAL & CULINARY QUOTE SHOWCASE
+            =========================================== -->
+            <section class="py-16 sm:py-20 bg-cream-100/70 border-b border-cream-200 relative overflow-hidden">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal-on-scroll">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-sage-700/10 text-sage-700 mb-5">
+                        <i class="fa-solid fa-quote-left text-xl"></i>
+                    </div>
+                    <blockquote id="inspirational-quote-text" class="font-serif italic text-2xl sm:text-4xl lg:text-[42px] text-espresso-900 leading-snug tracking-tight">
+                        “In every cup of shade-grown coffee lives the patience of mountain mist, the warmth of roasted earth, and the quiet bloom of a slow morning.”
+                    </blockquote>
+                    <div class="mt-6 flex flex-col items-center justify-center gap-1">
+                        <span class="w-12 h-0.5 bg-terracotta-500 rounded-full mb-2"></span>
+                        <p id="inspirational-quote-author" class="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-sage-700">
+                            The Beans & Bloom Conservatory Manifesto
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 TIME-AWARE CURATED CUSTOMER RECOMMENDATIONS
+            =========================================== -->
+            <section class="py-16 sm:py-20 bg-cream-50 border-b border-cream-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 reveal-on-scroll">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta-500/10 text-terracotta-600 text-xs font-bold uppercase tracking-wider mb-2">
+                                <i class="fa-regular fa-clock"></i>
+                                <span id="time-rec-badge">Curated For This Hour</span>
+                            </div>
+                            <h2 id="time-rec-heading" class="font-serif text-3xl sm:text-5xl font-bold text-espresso-900">
+                                Recommended For Your Current Craving
+                            </h2>
+                            <p id="time-rec-subtitle" class="text-sm sm:text-base text-espresso-600 mt-2 max-w-2xl">
+                                Handpicked by our head barista and hearth chef based on the time of day.
+                            </p>
+                        </div>
+                        <button onclick="navigateTo('menu')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cream-100 hover:bg-cream-200 border border-cream-300 text-espresso-900 text-xs font-bold uppercase tracking-wider transition-colors self-start md:self-auto">
+                            <span>Explore All 36 Items</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div id="time-recommendations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-on-scroll">
+                        <!-- Dynamically populated based on time of day / active theme -->
+                    </div>
+                </div>
+            </section>
+
             <!-- Interactive Brewing & Hearth Philosophy Preview -->
             <section class="py-20 bg-cream-50">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-14">
+                    <div class="text-center max-w-2xl mx-auto mb-14 reveal-on-scroll">
                         <span class="text-xs font-bold uppercase tracking-[0.2em] text-sage-600">From Estate & Hearth to Glasshouse</span>
                         <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso-900 mt-2">Our Botanical & Culinary Craft</h2>
                         <p class="text-espresso-600 mt-3 text-sm sm:text-base">Every plate and cup celebrates shade-grown Indian specialty coffee, cold-steeped botanicals, and slow-fermented hearth cooking.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-on-scroll">
                         <div class="bg-cream-100/80 border border-cream-200 rounded-3xl p-8 space-y-4 hover:shadow-card transition-shadow">
                             <div class="w-12 h-12 rounded-2xl bg-sage-700 text-cream-50 flex items-center justify-center">
                                 <i data-lucide="mountain-snow" class="w-6 h-6"></i>
@@ -467,7 +722,7 @@
                     </div>
 
                     <!-- Newsletter Banner -->
-                    <div class="bg-espresso-800 text-cream-50 rounded-3xl p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+                    <div class="bg-espresso-800 text-cream-50 rounded-3xl p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-6 reveal-on-scroll">
                         <div class="text-center lg:text-left max-w-xl">
                             <span class="text-xs uppercase tracking-[0.2em] text-oat-400 font-bold">The Botanical Dispatch</span>
                             <h3 class="font-serif text-3xl font-bold mt-1">Get 10% Off Your First Conservatory Order</h3>
@@ -1135,7 +1390,7 @@
                                 <span>Confirm Order & Pay <span id="chk-btn-amount">₹0</span></span>
                             </button>
                             <p class="text-[11px] text-center text-espresso-600">
-                                Paid orders sync directly to the Owner Portal (<span class="font-mono font-bold">king20011008@gmail.com</span>).
+                                Order confirmation is sent to the Owner Portal & receipt is issued immediately.
                             </p>
                         </div>
                     </div>
@@ -1145,7 +1400,7 @@
                         <div class="w-16 h-16 rounded-full border-4 border-sage-200 border-t-sage-700 animate-spin mx-auto"></div>
                         <div>
                             <h3 class="font-serif text-2xl font-bold text-espresso-900">Verifying Payment & Syncing Order...</h3>
-                            <p class="text-xs text-espresso-600 mt-1.5">Confirming INR settlement to <span class="font-mono font-bold text-sage-800">kingvikhyat11@fam</span> & recording your ticket on the Owner Portal.</p>
+                            <p class="text-xs text-espresso-600 mt-1.5">Confirming INR settlement to <span class="font-mono font-bold text-sage-800">kingvikhyat11@fam</span> & syncing your order to the Owner Portal.</p>
                         </div>
                     </div>
 
@@ -1485,14 +1740,14 @@
     </div>
 
     <!-- ==========================================
-         EMAIL PREVIEW MODAL (OWNER PORTAL ONLY)
+         EMAIL PREVIEW MODAL (OWNER-EXCLUSIVE EMAIL INSPECTOR)
     =========================================== -->
     <div id="email-preview-modal" onclick="if(event.target === this) closeEmailPreviewModal()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-espresso-900/70 backdrop-blur-xs overflow-y-auto">
         <div class="bg-cream-50 w-full max-w-xl rounded-3xl shadow-2xl border border-cream-200 overflow-hidden modal-pop my-auto">
             <div class="px-6 py-4 bg-espresso-900 text-cream-50 flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                     <i class="fa-solid fa-envelope-open-text text-oat-400"></i>
-                    <h4 id="email-modal-heading" class="font-serif text-xl font-bold">Owner Email Preview</h4>
+                    <h4 id="email-modal-heading" class="font-serif text-xl font-bold">Email Preview</h4>
                 </div>
                 <button onclick="closeEmailPreviewModal()" class="w-8 h-8 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
@@ -2365,7 +2620,170 @@
             renderMenu();
             selectRoastProfile('araku');
             updateCartUI();
+
+            // Initialize Time-of-Day Theme, Time-Based Recommendations & Scroll Reveal Animations
+            applyTimeTheme('auto');
+            initScrollRevealAnimations();
         });
+
+        // ==========================================
+        // TIME-OF-DAY THEME ENGINE & CURATED RECOMMENDATIONS
+        // ==========================================
+        let currentThemeMode = 'auto';
+
+        const timePeriodConfigs = {
+            morning: {
+                bodyClass: 'theme-morning',
+                iconHtml: '<i class="fa-solid fa-sun"></i>',
+                statusText: 'Morning Golden Sunrise • Bold Roasted Amber & Crisp Pour-Overs',
+                badgeText: 'Morning Ritual Picks (6 AM – 12 PM)',
+                headingText: 'Awaken With Single-Estate Espresso & Warm Bakes',
+                subtitleText: 'Bright, aromatic Chikmagalur & Araku coffees paired with flaky sourdough croissants for a serene start.',
+                quoteText: '“In every cup of shade-grown coffee lives the patience of mountain mist, the warmth of roasted earth, and the quiet bloom of a slow morning.”',
+                quoteAuthor: 'The Beans & Bloom Morning Manifesto',
+                recommendedIds: [4, 7, 16, 1] // V60 Pour-Over, Lavender Honey Oat Latte, Cardamom Pistachio Croissant, Cortado
+            },
+            afternoon: {
+                bodyClass: 'theme-afternoon',
+                iconHtml: '<i class="fa-solid fa-cloud-sun"></i>',
+                statusText: 'Afternoon Emerald Glasshouse • Deep Botanical Sage, Cold Brews & Burgers',
+                badgeText: 'Afternoon Refresher & Lunch Picks (12 PM – 5 PM)',
+                headingText: 'Cool Botanical Spritzes, Shakes & Artisan Burgers',
+                subtitleText: 'Beat the midday warmth with 18-hour Kyoto cold brews, Alphonso saffron shakes, and cast-iron brioche smash burgers.',
+                quoteText: '“Sunbeams through glasshouse ferns, a chilled botanical spritz in hand, and unhurried conversation—this is the art of the afternoon pause.”',
+                quoteAuthor: 'Notes From The Glasshouse Conservatory',
+                recommendedIds: [12, 24, 32, 35] // 18-Hour Kyoto Cold Brew, Alphonso Mango Shake, Crispy Herb Brioche Burger, Rosemary Fries
+            },
+            evening: {
+                bodyClass: 'theme-evening',
+                iconHtml: '<i class="fa-solid fa-fire-flame-curved"></i>',
+                statusText: 'Evening Candlelit Hearth • Wood-Fired Sourdough Pizzas & Decaf Botanicals',
+                badgeText: 'Evening Hearth & Supper Picks (5 PM – Late)',
+                headingText: 'Blistered Wood-Fired Pizzas & Cozy Evening Indulgences',
+                subtitleText: 'As twilight settles over the conservatory, enjoy 48-hour sourdough pizzas, truffle fries, and caffeine-free botanical infusions.',
+                quoteText: '“When evening lanterns glow and the wood-fired hearth crackles, sourdough, wild truffles, and velvet cocoa bring everyone back to the table.”',
+                quoteAuthor: 'The Hearth & Evening Table Journal',
+                recommendedIds: [28, 29, 23, 9] // Margherita Burrata Pizza, Wild Truffle Mushroom Pizza, Belgian Hazelnut Shake, Chamomile Vanilla Fog
+            }
+        };
+
+        function detectTimePeriodFromClock() {
+            const hour = new Date().getHours();
+            if (hour >= 5 && hour < 12) return 'morning';
+            if (hour >= 12 && hour < 17) return 'afternoon';
+            return 'evening';
+        }
+
+        function applyTimeTheme(mode = 'auto') {
+            currentThemeMode = mode;
+            const resolvedPeriod = (mode === 'auto') ? detectTimePeriodFromClock() : mode;
+            const cfg = timePeriodConfigs[resolvedPeriod] || timePeriodConfigs.morning;
+
+            // Update body theme classes smoothly
+            document.body.classList.remove('theme-morning', 'theme-afternoon', 'theme-evening');
+            if (cfg.bodyClass) {
+                document.body.classList.add(cfg.bodyClass);
+            }
+
+            // Update top ambience bar
+            const iconEl = document.getElementById('time-theme-icon');
+            const statusEl = document.getElementById('time-theme-status');
+            if (iconEl) iconEl.innerHTML = cfg.iconHtml;
+            if (statusEl) {
+                statusEl.textContent = mode === 'auto'
+                    ? `${cfg.statusText} • Auto-synced`
+                    : `${cfg.statusText} • Manual Preview`;
+            }
+
+            // Highlight active theme button
+            ['auto', 'morning', 'afternoon', 'evening'].forEach(btnKey => {
+                const btn = document.getElementById(`theme-btn-${btnKey}`);
+                if (!btn) return;
+                if (btnKey === mode) {
+                    btn.className = 'px-2.5 py-0.5 rounded-full bg-sage-700 text-cream-50 font-bold text-[10px] transition-colors';
+                } else {
+                    btn.className = 'px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors';
+                }
+            });
+
+            // Update Quote & Time-Based Recommendations
+            const quoteTextEl = document.getElementById('inspirational-quote-text');
+            const quoteAuthorEl = document.getElementById('inspirational-quote-author');
+            if (quoteTextEl) quoteTextEl.textContent = cfg.quoteText;
+            if (quoteAuthorEl) quoteAuthorEl.textContent = cfg.quoteAuthor;
+
+            renderTimeRecommendations(cfg);
+        }
+
+        function renderTimeRecommendations(cfg) {
+            const badgeEl = document.getElementById('time-rec-badge');
+            const headingEl = document.getElementById('time-rec-heading');
+            const subtitleEl = document.getElementById('time-rec-subtitle');
+            const gridEl = document.getElementById('time-recommendations-grid');
+
+            if (badgeEl) badgeEl.textContent = cfg.badgeText;
+            if (headingEl) headingEl.textContent = cfg.headingText;
+            if (subtitleEl) subtitleEl.textContent = cfg.subtitleText;
+            if (!gridEl) return;
+
+            const recItems = cfg.recommendedIds
+                .map(id => menuItems.find(item => item.id === id))
+                .filter(Boolean);
+
+            gridEl.innerHTML = recItems.map(item => `
+                <article onclick="openItemModal(${item.id})" class="group bg-white rounded-3xl overflow-hidden border border-cream-200 shadow-card hover:shadow-soft transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-cream-200">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='${item.fallback}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-espresso-900/85 text-oat-400 text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+                            ★ Recommended Now
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <div class="flex items-start justify-between gap-2">
+                                <h3 class="font-serif text-xl font-bold text-espresso-900 leading-snug group-hover:text-sage-700 transition-colors">${item.name}</h3>
+                                <span class="text-xs font-bold text-sage-700 bg-sage-50 px-2 py-1 rounded-lg border border-sage-200 flex-shrink-0">₹${item.price}</span>
+                            </div>
+                            <p class="text-xs text-espresso-600 mt-1.5 line-clamp-2 leading-relaxed">${item.description}</p>
+                        </div>
+                        <button type="button" onclick="event.stopPropagation(); openItemModal(${item.id})" class="w-full py-2.5 px-3 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 text-xs font-bold uppercase tracking-wider transition-colors">
+                            Customize & Add →
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // ==========================================
+        // SCROLL-TRIGGERED INTERSECTION OBSERVER ENGINE
+        // ==========================================
+        let scrollRevealObserver = null;
+
+        function initScrollRevealAnimations() {
+            const revealTargets = document.querySelectorAll('.reveal-on-scroll');
+            if (!('IntersectionObserver' in window)) {
+                revealTargets.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+
+            if (scrollRevealObserver) {
+                scrollRevealObserver.disconnect();
+            }
+
+            scrollRevealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        scrollRevealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            revealTargets.forEach(el => scrollRevealObserver.observe(el));
+        }
 
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.replace('#', '');
@@ -2432,6 +2850,7 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (window.lucide) lucide.createIcons();
+            setTimeout(() => initScrollRevealAnimations(), 60);
         }
 
         // 5. RENDER MENU CATALOG (ALL CARD ACTIONS OPEN INTERACTIVE POP-UP MODAL)
