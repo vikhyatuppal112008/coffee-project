@@ -325,7 +325,7 @@
 <body class="bg-cream-50 text-espresso-800 font-sans antialiased selection:bg-sage-700 selection:text-cream-50 overflow-x-hidden flex flex-col min-h-screen">
 
     <!-- ==========================================
-         0. AMBIENT TIME-OF-DAY & MOOD BAR
+         0. AMBIENT TIME-OF-DAY & MOOD BAR (PUBLIC VIEW: READ-ONLY STATUS)
     =========================================== -->
     <div id="time-theme-banner" class="bg-espresso-900 text-cream-50 text-[11px] sm:text-xs py-2 px-4 border-b border-espresso-700/70">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
@@ -333,12 +333,11 @@
                 <span id="time-theme-icon" class="text-oat-400"><i class="fa-solid fa-sun"></i></span>
                 <span id="time-theme-status" class="font-medium tracking-wide">Sunlit Morning Conservatory • Auto-synced to your local time</span>
             </div>
-            <div class="flex items-center gap-1.5">
-                <span class="text-cream-300/70 hidden sm:inline mr-1">Ambience:</span>
-                <button type="button" onclick="applyTimeTheme('auto')" id="theme-btn-auto" class="px-2.5 py-0.5 rounded-full bg-sage-700 text-cream-50 font-bold text-[10px] transition-colors">Auto</button>
-                <button type="button" onclick="applyTimeTheme('morning')" id="theme-btn-morning" class="px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors">☀️ Morning</button>
-                <button type="button" onclick="applyTimeTheme('afternoon')" id="theme-btn-afternoon" class="px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors">🌤️ Afternoon</button>
-                <button type="button" onclick="applyTimeTheme('evening')" id="theme-btn-evening" class="px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors">🕯️ Evening</button>
+            <div class="flex items-center gap-2">
+                <span id="theme-sync-pill" class="px-2.5 py-0.5 rounded-full bg-sage-700/90 text-cream-50 font-bold text-[10px] tracking-wide flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-oat-400 animate-ping"></span>
+                    <span id="theme-sync-label">Live Ambience Sync</span>
+                </span>
             </div>
         </div>
     </div>
@@ -1561,6 +1560,35 @@
                             </div>
                         </div>
 
+                        <!-- OWNER-EXCLUSIVE GLOBAL AMBIENCE & THEME CONTROLLER (SYNCS ACROSS ALL DEVICES) -->
+                        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-cream-200 shadow-card flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                            <div class="space-y-1">
+                                <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-sage-100 text-sage-800 text-[11px] font-bold uppercase tracking-wider">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-terracotta-500"></i>
+                                    <span>Global Conservatory Ambience Control • Owner Only</span>
+                                </div>
+                                <h3 class="font-serif text-2xl font-bold text-espresso-900">Website Theme & Cross-Device Broadcast</h3>
+                                <p class="text-xs text-espresso-600">
+                                    By default, the theme changes automatically by time of day. Select a manual theme below to override and broadcast it live to all customer devices.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2 bg-cream-100 p-2 rounded-2xl border border-cream-200">
+                                <button type="button" onclick="ownerSetGlobalTheme('auto')" id="theme-btn-auto" class="px-3.5 py-2 rounded-xl bg-sage-700 text-cream-50 font-bold text-xs transition-all shadow-xs">
+                                    ⏱️ Auto (Time of Day)
+                                </button>
+                                <button type="button" onclick="ownerSetGlobalTheme('morning')" id="theme-btn-morning" class="px-3.5 py-2 rounded-xl bg-white hover:bg-cream-200 text-espresso-800 font-semibold text-xs transition-all">
+                                    ☀️ Morning
+                                </button>
+                                <button type="button" onclick="ownerSetGlobalTheme('afternoon')" id="theme-btn-afternoon" class="px-3.5 py-2 rounded-xl bg-white hover:bg-cream-200 text-espresso-800 font-semibold text-xs transition-all">
+                                    🌤️ Afternoon
+                                </button>
+                                <button type="button" onclick="ownerSetGlobalTheme('evening')" id="theme-btn-evening" class="px-3.5 py-2 rounded-xl bg-white hover:bg-cream-200 text-espresso-800 font-semibold text-xs transition-all">
+                                    🕯️ Evening
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Live EmailJS / Webhook / Owner Email Config Drawer (Owner-Only) -->
                         <div id="email-config-panel" class="hidden bg-white p-6 rounded-3xl border border-cream-300 shadow-card space-y-4 text-xs">
                             <div class="flex items-center justify-between border-b border-cream-200 pb-3">
@@ -1831,6 +1859,73 @@
 
     <!-- Custom Toast Notification -->
     <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none"></div>
+
+    <!-- ==========================================
+         FIREBASE REAL-TIME CROSS-DEVICE THEME SYNC MODULE
+    =========================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        (async function initCloudThemeSync() {
+            const syncLabelEl = document.getElementById('theme-sync-label');
+            try {
+                if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+                    if (syncLabelEl) syncLabelEl.textContent = 'Auto Time-Sync Active';
+                    return;
+                }
+
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'beans-and-bloom-app';
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                // RULE 3: Authenticate before Firestore queries
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                if (!auth.currentUser) return;
+
+                // RULE 1: Strict public artifact path for cross-device global settings
+                const themeDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'site_settings', 'ambience_theme');
+
+                // Real-time listener so any device immediately reflects Owner's theme change
+                onSnapshot(themeDocRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const data = snapshot.data();
+                        if (data && data.mode && window.applyTimeTheme) {
+                            window.applyTimeTheme(data.mode, true);
+                        }
+                    }
+                    if (syncLabelEl) syncLabelEl.textContent = 'Multi-Device Live Sync';
+                }, (err) => {
+                    if (syncLabelEl) syncLabelEl.textContent = 'Auto Time-Sync Active';
+                });
+
+                // Expose cloud writer for Owner Portal
+                window.broadcastGlobalThemeToCloud = async function(mode) {
+                    if (!auth.currentUser) return false;
+                    try {
+                        await setDoc(themeDocRef, {
+                            mode: mode,
+                            updatedBy: 'king20011008@gmail.com',
+                            updatedAt: Date.now()
+                        });
+                        return true;
+                    } catch (e) {
+                        return false;
+                    }
+                };
+            } catch (e) {
+                if (syncLabelEl) syncLabelEl.textContent = 'Auto Time-Sync Active';
+            }
+        })();
+    </script>
 
     <!-- ==========================================
          JAVASCRIPT MULTI-PAGE, POP-UP MODAL & COMMERCE ENGINE
@@ -2340,6 +2435,7 @@
         const ORDERS_STORAGE_KEY = 'bb_owner_orders_v1';
         const SESSION_STORAGE_KEY = 'bb_active_user_v1';
         const MAIL_CFG_STORAGE_KEY = 'bb_owner_mail_cfg_v1';
+        const GLOBAL_THEME_STORAGE_KEY = 'bb_global_theme_mode_v1';
 
         let currentPage = 'home';
         let cart = [];
@@ -2603,31 +2699,31 @@
             // Set default reservation date to tomorrow
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            const dateInput = document.getElementById('res-date');
-            if (dateInput) {
-                dateInput.value = tomorrow.toISOString().split('T')[0];
-                dateInput.min = new Date().toISOString().split('T')[0];
-            }
-
-            // Handle URL hash routing if present
-            const initialHash = window.location.hash.replace('#', '');
-            if (['home', 'menu', 'story', 'visit', 'checkout', 'owner'].includes(initialHash)) {
-                navigateTo(initialHash, false);
-            } else {
-                navigateTo('home', false);
-            }
-
-            renderMenu();
-            selectRoastProfile('araku');
-            updateCartUI();
-
-            // Initialize Time-of-Day Theme, Time-Based Recommendations & Scroll Reveal Animations
-            applyTimeTheme('auto');
+            // Initialize Time-of-Day Theme (from synced global setting or auto), Time-Based Recommendations & Scroll Reveal Animations
+            let savedThemeMode = 'auto';
+            try {
+                savedThemeMode = localStorage.getItem(GLOBAL_THEME_STORAGE_KEY) || 'auto';
+            } catch (e) {}
+            applyTimeTheme(savedThemeMode, true);
             initScrollRevealAnimations();
+
+            // Re-evaluate automatic time-of-day theme every 60 seconds when in 'auto' mode
+            setInterval(() => {
+                if (currentThemeMode === 'auto') {
+                    applyTimeTheme('auto', true);
+                }
+            }, 60000);
+        });
+
+        // Listen for cross-tab / cross-window storage updates immediately
+        window.addEventListener('storage', (e) => {
+            if (e.key === GLOBAL_THEME_STORAGE_KEY && e.newValue) {
+                applyTimeTheme(e.newValue, true);
+            }
         });
 
         // ==========================================
-        // TIME-OF-DAY THEME ENGINE & CURATED RECOMMENDATIONS
+        // TIME-OF-DAY THEME ENGINE & OWNER-ONLY CROSS-DEVICE OVERRIDE
         // ==========================================
         let currentThemeMode = 'auto';
 
@@ -2674,8 +2770,41 @@
             return 'evening';
         }
 
-        function applyTimeTheme(mode = 'auto') {
+        // Owner-exclusive function to change global theme & broadcast across all devices
+        async function ownerSetGlobalTheme(mode) {
+            if (!currentUser || currentUser.role !== 'owner') {
+                showToast('Access Denied: Only the logged-in Owner can change the global theme.');
+                openAuthModal('owner');
+                return;
+            }
+
+            applyTimeTheme(mode, false);
+
+            try {
+                localStorage.setItem(GLOBAL_THEME_STORAGE_KEY, mode);
+            } catch (e) {}
+
+            let cloudSynced = false;
+            if (typeof window.broadcastGlobalThemeToCloud === 'function') {
+                cloudSynced = await window.broadcastGlobalThemeToCloud(mode);
+            }
+
+            const modeName = mode === 'auto' ? 'Automatic (Time of Day)' : mode.charAt(0).toUpperCase() + mode.slice(1);
+            showToast(
+                cloudSynced
+                    ? `Global theme set to ${modeName} & synced live across all devices!`
+                    : `Global theme set to ${modeName} across your session!`
+            );
+        }
+
+        function applyTimeTheme(mode = 'auto', fromSync = false) {
             currentThemeMode = mode;
+            if (fromSync) {
+                try {
+                    localStorage.setItem(GLOBAL_THEME_STORAGE_KEY, mode);
+                } catch (e) {}
+            }
+
             const resolvedPeriod = (mode === 'auto') ? detectTimePeriodFromClock() : mode;
             const cfg = timePeriodConfigs[resolvedPeriod] || timePeriodConfigs.morning;
 
@@ -2685,24 +2814,24 @@
                 document.body.classList.add(cfg.bodyClass);
             }
 
-            // Update top ambience bar
+            // Update top ambience bar (read-only status for visitors)
             const iconEl = document.getElementById('time-theme-icon');
             const statusEl = document.getElementById('time-theme-status');
             if (iconEl) iconEl.innerHTML = cfg.iconHtml;
             if (statusEl) {
                 statusEl.textContent = mode === 'auto'
                     ? `${cfg.statusText} • Auto-synced`
-                    : `${cfg.statusText} • Manual Preview`;
+                    : `${cfg.statusText} • Set by Owner`;
             }
 
-            // Highlight active theme button
+            // Highlight active theme button inside the Owner Portal
             ['auto', 'morning', 'afternoon', 'evening'].forEach(btnKey => {
                 const btn = document.getElementById(`theme-btn-${btnKey}`);
                 if (!btn) return;
                 if (btnKey === mode) {
-                    btn.className = 'px-2.5 py-0.5 rounded-full bg-sage-700 text-cream-50 font-bold text-[10px] transition-colors';
+                    btn.className = 'px-3.5 py-2 rounded-xl bg-sage-700 text-cream-50 font-bold text-xs transition-all shadow-xs';
                 } else {
-                    btn.className = 'px-2.5 py-0.5 rounded-full bg-espresso-800 hover:bg-espresso-700 text-cream-200 font-semibold text-[10px] transition-colors';
+                    btn.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-cream-200 text-espresso-800 font-semibold text-xs transition-all';
                 }
             });
 
