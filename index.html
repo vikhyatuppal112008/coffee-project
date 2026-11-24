@@ -166,54 +166,114 @@
 
         /* ==========================================
            TIME-OF-DAY ADAPTIVE THEME ENGINE
-           (Bold Morning / Rich Afternoon / Evening Candlelight)
+           (Pinkish-Peach Morning / Rich Afternoon / Evening Candlelight)
         =========================================== */
         body {
             transition: background-color 0.7s ease, color 0.7s ease;
         }
 
-        /* Bold Morning Sunlit Amber & Crisp Botanical Theme */
+        /* ==========================================
+           FALLING BLOSSOM FLOWER PETAL ANIMATIONS (ALL THEMES)
+        =========================================== */
+        #blossom-petals-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 35;
+            overflow: hidden;
+        }
+
+        .blossom-petal {
+            position: absolute;
+            top: -10%;
+            opacity: 0;
+            will-change: transform, opacity;
+            animation: blossomDrift var(--fall-duration, 14s) linear var(--fall-delay, 0s) infinite;
+        }
+
+        @keyframes blossomDrift {
+            0% {
+                transform: translate3d(0, -10vh, 0) rotate(0deg) scale(var(--petal-scale, 1));
+                opacity: 0;
+            }
+            12% {
+                opacity: var(--petal-opacity, 0.72);
+            }
+            50% {
+                transform: translate3d(var(--sway-x, 45px), 50vh, 0) rotate(190deg) scale(var(--petal-scale, 1));
+            }
+            88% {
+                opacity: var(--petal-opacity, 0.65);
+            }
+            100% {
+                transform: translate3d(calc(var(--sway-x, 45px) * -0.6), 112vh, 0) rotate(360deg) scale(var(--petal-scale, 1));
+                opacity: 0;
+            }
+        }
+
+        /* Pinkish & Peach Morning Blossom Theme */
         body.theme-morning {
-            background: linear-gradient(180deg, #FDF4E3 0%, #F7E8CE 100%) !important;
-            color: #1B110D !important;
+            background: linear-gradient(180deg, #FFF0F3 0%, #FFE2DC 52%, #FAD4C8 100%) !important;
+            color: #2D1820 !important;
         }
         body.theme-morning #navbar {
-            background-color: rgba(253, 244, 227, 0.95) !important;
-            border-bottom: 2px solid #D4A373 !important;
-            box-shadow: 0 8px 25px -8px rgba(184, 134, 85, 0.25) !important;
+            background-color: rgba(255, 240, 243, 0.94) !important;
+            border-bottom: 2px solid #F2A7B5 !important;
+            box-shadow: 0 8px 25px -8px rgba(217, 107, 132, 0.22) !important;
         }
         body.theme-morning .bg-cream-50 {
-            background-color: #FCF3E3 !important;
+            background-color: #FFF3F5 !important;
         }
         body.theme-morning .bg-cream-100,
         body.theme-morning .bg-cream-100\/80,
         body.theme-morning .bg-cream-100\/70,
         body.theme-morning .bg-cream-100\/60 {
-            background-color: #F3E0C2 !important;
+            background-color: #FDE2E4 !important;
         }
         body.theme-morning .bg-white {
-            background-color: #FFFDF9 !important;
-            border-color: #D4A373 !important;
-            box-shadow: 0 10px 28px -6px rgba(168, 97, 59, 0.14) !important;
+            background-color: #FFFAFB !important;
+            border-color: #F4B3BE !important;
+            box-shadow: 0 10px 28px -6px rgba(201, 93, 118, 0.14) !important;
         }
         body.theme-morning .border-cream-200,
         body.theme-morning .border-cream-200\/80,
         body.theme-morning .border-cream-200\/90,
         body.theme-morning .border-cream-300 {
-            border-color: #D9B382 !important;
+            border-color: #F3B5BF !important;
         }
-        body.theme-morning .text-espresso-900 {
-            color: #140B07 !important;
+        body.theme-morning .text-espresso-900,
+        body.theme-morning .text-espresso-800 {
+            color: #2B131C !important;
+        }
+        body.theme-morning .text-espresso-700,
+        body.theme-morning .text-espresso-600 {
+            color: #5E3342 !important;
         }
         body.theme-morning .text-sage-600,
         body.theme-morning .text-sage-700 {
-            color: #1F4D36 !important;
+            color: #B84362 !important;
+        }
+        body.theme-morning .bg-sage-50 {
+            background-color: #FCE8EC !important;
+        }
+        body.theme-morning .bg-sage-100 {
+            background-color: #FAD6DF !important;
+            color: #7A233B !important;
         }
         body.theme-morning .bg-sage-700 {
-            background-color: #1F4D36 !important;
+            background-color: #B84362 !important;
+        }
+        body.theme-morning .bg-sage-800\/70,
+        body.theme-morning .bg-sage-800 {
+            background-color: #8F2D49 !important;
+        }
+        body.theme-morning .border-sage-600,
+        body.theme-morning .border-sage-600\/60,
+        body.theme-morning .border-sage-200 {
+            border-color: #E899AB !important;
         }
         body.theme-morning .bg-terracotta-500 {
-            background-color: #C25924 !important;
+            background-color: #E06D53 !important;
         }
 
         /* Bold Afternoon Emerald Glasshouse & Terracotta Theme */
@@ -323,6 +383,9 @@
     </style>
 </head>
 <body class="bg-cream-50 text-espresso-800 font-sans antialiased selection:bg-sage-700 selection:text-cream-50 overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Ambient Falling Blossom Petals Overlay (Visible Across All Time Themes) -->
+    <div id="blossom-petals-layer" aria-hidden="true"></div>
 
     <!-- ==========================================
          0. AMBIENT TIME-OF-DAY & MOOD BAR (PUBLIC VIEW: READ-ONLY STATUS)
@@ -2752,6 +2815,7 @@
             try {
                 savedThemeMode = localStorage.getItem(GLOBAL_THEME_STORAGE_KEY) || 'auto';
             } catch (e) {}
+            renderBlossomFlowers('morning');
             applyTimeTheme(savedThemeMode, true);
             initScrollRevealAnimations();
 
@@ -2771,6 +2835,49 @@
         });
 
         // ==========================================
+        // BLOSSOM FLOWER PETAL GENERATOR (ALL THEMES)
+        // ==========================================
+        function renderBlossomFlowers(resolvedPeriod = 'morning') {
+            const container = document.getElementById('blossom-petals-layer');
+            if (!container) return;
+
+            const paletteByPeriod = {
+                morning: ['#FF9EB5', '#FFB7C5', '#FFC8B4', '#F47C98', '#FFD6CC'],
+                afternoon: ['#FFB5C5', '#FFD1C1', '#F79BB0', '#FFE0D6', '#F4A29E'],
+                evening: ['#F7A8B8', '#F5B895', '#E88DA3', '#FAD0C4', '#D98E66']
+            };
+            const colors = paletteByPeriod[resolvedPeriod] || paletteByPeriod.morning;
+            const petalCount = 22;
+
+            container.innerHTML = Array.from({ length: petalCount }).map((_, idx) => {
+                const leftPct = ((idx * 17.3) % 98) + 1;
+                const duration = (11 + (idx % 7) * 1.8).toFixed(1);
+                const delay = -((idx * 1.4) % 14).toFixed(1);
+                const swayX = ((idx % 2 === 0 ? 1 : -1) * (28 + (idx % 5) * 14)) + 'px';
+                const scale = (0.72 + (idx % 4) * 0.16).toFixed(2);
+                const opacity = (resolvedPeriod === 'evening' ? 0.55 : 0.78).toFixed(2);
+                const fill = colors[idx % colors.length];
+                const isFullBloom = idx % 3 === 0;
+
+                const svgGraphic = isFullBloom
+                    ? `<svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 3C18.8 7.2 19.2 11.4 16 14.5C12.8 11.4 13.2 7.2 16 3Z" fill="${fill}"/>
+                        <path d="M29 13C24.8 15.8 20.6 16.2 17.5 13C20.6 9.8 24.8 10.2 29 13Z" fill="${fill}"/>
+                        <path d="M24 27C19.5 25.1 17 21.8 17.5 17.5C21.8 17 25.1 19.5 24 27Z" fill="${fill}"/>
+                        <path d="M8 27C6.9 19.5 10.2 17 14.5 17.5C15 21.8 12.5 25.1 8 27Z" fill="${fill}"/>
+                        <path d="M3 13C7.2 10.2 11.4 9.8 14.5 13C11.4 16.2 7.2 15.8 3 13Z" fill="${fill}"/>
+                        <circle cx="16" cy="15.5" r="2.3" fill="#FFF0F3"/>
+                       </svg>`
+                    : `<svg width="18" height="22" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 1C15.5 6.5 18 13.5 10 24.5C2 13.5 4.5 6.5 10 1Z" fill="${fill}"/>
+                        <path d="M10 4C10 10 10 16 10 21" stroke="#FFF5F7" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round"/>
+                       </svg>`;
+
+                return `<div class="blossom-petal" style="left:${leftPct}%; --fall-duration:${duration}s; --fall-delay:${delay}s; --sway-x:${swayX}; --petal-scale:${scale}; --petal-opacity:${opacity};">${svgGraphic}</div>`;
+            }).join('');
+        }
+
+        // ==========================================
         // TIME-OF-DAY THEME ENGINE & OWNER-ONLY CROSS-DEVICE OVERRIDE
         // ==========================================
         let currentThemeMode = 'auto';
@@ -2778,8 +2885,8 @@
         const timePeriodConfigs = {
             morning: {
                 bodyClass: 'theme-morning',
-                iconHtml: '<i class="fa-solid fa-sun"></i>',
-                statusText: 'Morning Golden Sunrise • Bold Roasted Amber & Crisp Pour-Overs',
+                iconHtml: '<i class="fa-solid fa-spa"></i>',
+                statusText: 'Pinkish Peach Blossom Morning • Cherry Blossom Petals & Crisp Pour-Overs',
                 badgeText: 'Morning Ritual Picks (6 AM – 12 PM)',
                 headingText: 'Awaken With Single-Estate Espresso & Warm Bakes',
                 subtitleText: 'Bright, aromatic Chikmagalur & Araku coffees paired with flaky sourdough croissants for a serene start.',
@@ -2861,6 +2968,9 @@
             if (cfg.bodyClass) {
                 document.body.classList.add(cfg.bodyClass);
             }
+
+            // Refresh falling blossom flower petals tinted for the active theme
+            renderBlossomFlowers(resolvedPeriod);
 
             // Update top ambience bar (read-only status for visitors)
             const iconEl = document.getElementById('time-theme-icon');
