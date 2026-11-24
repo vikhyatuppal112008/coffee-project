@@ -135,525 +135,17 @@
             background: linear-gradient(135deg, #2C3E35 0%, #1B110D 58%, #3B2820 100%);
         }
 
+        /* GPU-accelerated Menu Card Rendering (prevents scroll/filter lag across 54 items) */
+        .menu-card-item {
+            contain: layout style paint;
+            content-visibility: auto;
+            contain-intrinsic-size: 360px 440px;
+            transform: translateZ(0);
+        }
+
         /* ==========================================
            PROFESSIONAL SCROLL REVEAL & AMBIENT ANIMATIONS
-        =========================================== */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(32px) scale(0.985);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-        .reveal-on-scroll.reveal-left {
-            transform: translateX(-32px);
-        }
-        .reveal-on-scroll.reveal-right {
-            transform: translateX(32px);
-        }
-        .reveal-on-scroll.is-visible {
-            opacity: 1;
-            transform: translate(0, 0) scale(1);
-        }
-
-        @keyframes pulseGlowSoft {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 125, 85, 0.35); }
-            50% { box-shadow: 0 0 0 10px rgba(200, 125, 85, 0); }
-        }
-        .ambient-pulse {
-            animation: pulseGlowSoft 3.5s infinite;
-        }
-
-        /* ==========================================
-           TIME-OF-DAY ADAPTIVE THEME ENGINE
-           (Pinkish-Peach Morning / Rich Afternoon / Evening Candlelight)
-        =========================================== */
-        body {
-            transition: background-color 0.7s ease, color 0.7s ease;
-        }
-
-        /* ==========================================
-           FALLING BLOSSOM FLOWER PETAL ANIMATIONS (ALL THEMES)
-        =========================================== */
-        #blossom-petals-layer {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 35;
-            overflow: hidden;
-        }
-
-        .blossom-petal {
-            position: absolute;
-            top: -10%;
-            opacity: 0;
-            will-change: transform, opacity;
-            animation: blossomDrift var(--fall-duration, 14s) linear var(--fall-delay, 0s) infinite;
-        }
-
-        @keyframes blossomDrift {
-            0% {
-                transform: translate3d(0, -10vh, 0) rotate(0deg) scale(var(--petal-scale, 1));
-                opacity: 0;
-            }
-            12% {
-                opacity: var(--petal-opacity, 0.72);
-            }
-            50% {
-                transform: translate3d(var(--sway-x, 45px), 50vh, 0) rotate(190deg) scale(var(--petal-scale, 1));
-            }
-            88% {
-                opacity: var(--petal-opacity, 0.65);
-            }
-            100% {
-                transform: translate3d(calc(var(--sway-x, 45px) * -0.6), 112vh, 0) rotate(360deg) scale(var(--petal-scale, 1));
-                opacity: 0;
-            }
-        }
-
-        /* Pinkish & Peach Morning Blossom Theme */
-        body.theme-morning {
-            background: linear-gradient(180deg, #FFF0F3 0%, #FFE2DC 52%, #FAD4C8 100%) !important;
-            color: #2D1820 !important;
-        }
-        body.theme-morning #navbar {
-            background-color: rgba(255, 240, 243, 0.94) !important;
-            border-bottom: 2px solid #F2A7B5 !important;
-            box-shadow: 0 8px 25px -8px rgba(217, 107, 132, 0.22) !important;
-        }
-        body.theme-morning .bg-cream-50 {
-            background-color: #FFF3F5 !important;
-        }
-        body.theme-morning .bg-cream-100,
-        body.theme-morning .bg-cream-100\/80,
-        body.theme-morning .bg-cream-100\/70,
-        body.theme-morning .bg-cream-100\/60 {
-            background-color: #FDE2E4 !important;
-        }
-        body.theme-morning .bg-white {
-            background-color: #FFFAFB !important;
-            border-color: #F4B3BE !important;
-            box-shadow: 0 10px 28px -6px rgba(201, 93, 118, 0.14) !important;
-        }
-        body.theme-morning .border-cream-200,
-        body.theme-morning .border-cream-200\/80,
-        body.theme-morning .border-cream-200\/90,
-        body.theme-morning .border-cream-300 {
-            border-color: #F3B5BF !important;
-        }
-        body.theme-morning .text-espresso-900,
-        body.theme-morning .text-espresso-800 {
-            color: #2B131C !important;
-        }
-        body.theme-morning .text-espresso-700,
-        body.theme-morning .text-espresso-600 {
-            color: #5E3342 !important;
-        }
-        body.theme-morning .text-sage-600,
-        body.theme-morning .text-sage-700 {
-            color: #B84362 !important;
-        }
-        body.theme-morning .bg-sage-50 {
-            background-color: #FCE8EC !important;
-        }
-        body.theme-morning .bg-sage-100 {
-            background-color: #FAD6DF !important;
-            color: #7A233B !important;
-        }
-        body.theme-morning .bg-sage-700 {
-            background-color: #B84362 !important;
-        }
-        body.theme-morning .bg-sage-800\/70,
-        body.theme-morning .bg-sage-800 {
-            background-color: #8F2D49 !important;
-        }
-        body.theme-morning .border-sage-600,
-        body.theme-morning .border-sage-600\/60,
-        body.theme-morning .border-sage-200 {
-            border-color: #E899AB !important;
-        }
-        body.theme-morning .bg-terracotta-500 {
-            background-color: #E06D53 !important;
-        }
-
-        /* Bold Afternoon Emerald Glasshouse & Terracotta Theme */
-        body.theme-afternoon {
-            background: linear-gradient(180deg, #E2EDE6 0%, #D2E3D9 100%) !important;
-            color: #13221B !important;
-        }
-        body.theme-afternoon #navbar {
-            background-color: rgba(226, 237, 230, 0.95) !important;
-            border-bottom: 2px solid #3C594B !important;
-            box-shadow: 0 8px 25px -8px rgba(44, 62, 53, 0.28) !important;
-        }
-        body.theme-afternoon .bg-cream-50 {
-            background-color: #E5EFE9 !important;
-        }
-        body.theme-afternoon .bg-cream-100,
-        body.theme-afternoon .bg-cream-100\/80,
-        body.theme-afternoon .bg-cream-100\/70,
-        body.theme-afternoon .bg-cream-100\/60 {
-            background-color: #CEE0D6 !important;
-        }
-        body.theme-afternoon .bg-white {
-            background-color: #F7FBF9 !important;
-            border-color: #6E8F7F !important;
-            box-shadow: 0 10px 28px -6px rgba(32, 46, 39, 0.16) !important;
-        }
-        body.theme-afternoon .border-cream-200,
-        body.theme-afternoon .border-cream-200\/80,
-        body.theme-afternoon .border-cream-200\/90,
-        body.theme-afternoon .border-cream-300,
-        body.theme-afternoon .border-sage-200 {
-            border-color: #7FA391 !important;
-        }
-        body.theme-afternoon .text-espresso-900,
-        body.theme-afternoon .text-espresso-800 {
-            color: #102119 !important;
-        }
-        body.theme-afternoon .text-espresso-700,
-        body.theme-afternoon .text-espresso-600 {
-            color: #274235 !important;
-        }
-        body.theme-afternoon .text-sage-600,
-        body.theme-afternoon .text-sage-700 {
-            color: #1B4D36 !important;
-        }
-        body.theme-afternoon .bg-sage-700 {
-            background-color: #1B4D36 !important;
-        }
-        body.theme-afternoon .bg-terracotta-500 {
-            background-color: #B85125 !important;
-        }
-
-        /* Evening Candlelit Hearth Mode */
-        body.theme-evening {
-            background-color: #16100C;
-            color: #F3EDE2;
-        }
-        body.theme-evening #navbar {
-            background-color: rgba(22, 16, 12, 0.92);
-            border-color: rgba(212, 163, 115, 0.22);
-        }
-        body.theme-evening .bg-cream-50 {
-            background-color: #1C1410 !important;
-        }
-        body.theme-evening .bg-cream-100,
-        body.theme-evening .bg-cream-100\/80,
-        body.theme-evening .bg-cream-100\/70,
-        body.theme-evening .bg-cream-100\/60 {
-            background-color: #241914 !important;
-        }
-        body.theme-evening .bg-white {
-            background-color: #261B15 !important;
-            color: #FAF7F2 !important;
-        }
-        body.theme-evening .bg-sage-50 {
-            background-color: #1E2B24 !important;
-        }
-        body.theme-evening .bg-sage-100 {
-            background-color: #26382F !important;
-            color: #DFE8E3 !important;
-        }
-        body.theme-evening .border-cream-200,
-        body.theme-evening .border-cream-200\/80,
-        body.theme-evening .border-cream-200\/90,
-        body.theme-evening .border-cream-300,
-        body.theme-evening .border-sage-200 {
-            border-color: rgba(212, 163, 115, 0.22) !important;
-        }
-        body.theme-evening .text-espresso-900,
-        body.theme-evening .text-espresso-800 {
-            color: #FAF7F2 !important;
-        }
-        body.theme-evening .text-espresso-700,
-        body.theme-evening .text-espresso-600 {
-            color: #D9C9AA !important;
-        }
-        body.theme-evening .text-sage-700,
-        body.theme-evening .text-sage-800 {
-            color: #9CC2AF !important;
-        }
-        body.theme-evening input,
-        body.theme-evening select {
-            background-color: #18110D !important;
-            color: #FAF7F2 !important;
-            border-color: rgba(212, 163, 115, 0.3) !important;
-        }
-    </style>
-</head>
-<body class="bg-cream-50 text-espresso-800 font-sans antialiased selection:bg-sage-700 selection:text-cream-50 overflow-x-hidden flex flex-col min-h-screen">
-
-    <!-- Ambient Falling Blossom Petals Overlay (Visible Across All Time Themes) -->
-    <div id="blossom-petals-layer" aria-hidden="true"></div>
-
-    <!-- ==========================================
-         0. AMBIENT TIME-OF-DAY & MOOD BAR (PUBLIC VIEW: READ-ONLY STATUS)
-    =========================================== -->
-    <div id="time-theme-banner" class="bg-espresso-900 text-cream-50 text-[11px] sm:text-xs py-2 px-4 border-b border-espresso-700/70">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2">
-                <span id="time-theme-icon" class="text-oat-400"><i class="fa-solid fa-sun"></i></span>
-                <span id="time-theme-status" class="font-medium tracking-wide">Sunlit Morning Conservatory • Auto-synced to your local time</span>
-            </div>
-            <div class="flex items-center gap-2">
-                <span id="theme-sync-pill" class="px-2.5 py-0.5 rounded-full bg-sage-700/90 text-cream-50 font-bold text-[10px] tracking-wide flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-oat-400 animate-ping"></span>
-                    <span id="theme-sync-label">Live Ambience Sync</span>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==========================================
-         1. STICKY MULTI-PAGE NAVIGATION BAR
-    =========================================== -->
-    <header id="navbar" class="sticky top-0 left-0 right-0 z-40 transition-all duration-300 bg-cream-50/95 backdrop-blur-md border-b border-cream-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Brand Logo -->
-                <button onclick="navigateTo('home')" class="flex items-center gap-3 group focus:outline-none text-left">
-                    <div class="w-10 h-10 rounded-2xl bg-sage-700 text-cream-50 flex items-center justify-center shadow-sm group-hover:bg-sage-600 transition-colors">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9z"/>
-                            <path d="M12 22c-4.97 0-9-4.03-9-9 4.97 0 9 4.03 9 9z"/>
-                            <path d="M12 22V8"/>
-                            <path d="M12 8c0-3.31 2.69-6 6-6 0 3.31-2.69 6-6 6z"/>
-                            <path d="M12 11c0-2.76-2.24-5-5-5 0 2.76 2.24 5 5 5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-espresso-900 block leading-none">Blooming Blossom</span>
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-sage-600 font-semibold block mt-0.5">Roastery, Conservatory & Hearth</span>
-                    </div>
-                </button>
-
-                <!-- Desktop Multi-Page Navigation Tabs -->
-                <nav class="hidden md:flex items-center space-x-2 lg:space-x-4 bg-cream-100/80 px-2.5 py-1.5 rounded-full border border-cream-200">
-                    <button onclick="navigateTo('home')" data-nav="home" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-cream-50 bg-sage-700 shadow-xs">
-                        Home
-                    </button>
-                    <button onclick="navigateTo('menu')" data-nav="menu" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700">
-                        Menu
-                    </button>
-                    <button onclick="navigateTo('story')" data-nav="story" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700">
-                        Our Story
-                    </button>
-                    <button onclick="navigateTo('visit')" data-nav="visit" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700">
-                        Visit & Reserve
-                    </button>
-                    <button onclick="navigateTo('owner')" data-nav="owner" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700 inline-flex items-center gap-1.5">
-                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-terracotta-500"></i>
-                        <span>Owner Portal</span>
-                        <span id="owner-nav-badge" class="hidden px-1.5 py-0.5 text-[10px] font-bold bg-terracotta-500 text-white rounded-full">0</span>
-                    </button>
-                </nav>
-
-                <!-- Right Actions: Auth Login/User Pill, Order Bag Button & Mobile Menu Toggle -->
-                <div class="flex items-center gap-2.5">
-                    <!-- Auth Login / Logged-In Status Button -->
-                    <button id="nav-auth-btn" onclick="handleHeaderAuthClick()" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-cream-100 hover:bg-cream-200 border border-cream-300 text-espresso-900 text-xs sm:text-sm font-semibold transition-all active:scale-95">
-                        <i data-lucide="user-circle" class="w-4 h-4 text-sage-700"></i>
-                        <span id="nav-auth-label">Login</span>
-                    </button>
-
-                    <button onclick="toggleCartDrawer(true)" aria-label="Open Order Bag" class="relative inline-flex items-center gap-2.5 bg-espresso-700 hover:bg-espresso-900 text-cream-50 px-4 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm hover:shadow active:scale-95">
-                        <i data-lucide="shopping-bag" class="w-4 h-4 text-oat-400"></i>
-                        <span class="hidden sm:inline">Order Bag</span>
-                        <span id="nav-cart-badge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold bg-terracotta-500 text-white rounded-full">0</span>
-                    </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-espresso-800 hover:bg-cream-200/60 focus:outline-none" aria-label="Toggle navigation menu">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Dropdown Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-cream-200 px-4 pt-2 pb-5 space-y-1.5 shadow-lg">
-            <button onclick="navigateTo('home'); toggleMobileMenu();" data-mobile-nav="home" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold bg-sage-700 text-cream-50">Home</button>
-            <button onclick="navigateTo('menu'); toggleMobileMenu();" data-mobile-nav="menu" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-800 hover:bg-cream-100">Menu</button>
-            <button onclick="navigateTo('story'); toggleMobileMenu();" data-mobile-nav="story" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-800 hover:bg-cream-100">Our Story</button>
-            <button onclick="navigateTo('visit'); toggleMobileMenu();" data-mobile-nav="visit" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-800 hover:bg-cream-100">Visit & Reserve</button>
-            <button onclick="navigateTo('owner'); toggleMobileMenu();" data-mobile-nav="owner" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-sage-800 hover:bg-cream-100 flex items-center justify-between">
-                <span>Owner Portal</span>
-                <span class="text-xs px-2 py-0.5 rounded-full bg-sage-100 text-sage-800 font-bold">Admin</span>
-            </button>
-            <button onclick="openAuthModal('customer'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-terracotta-600 hover:bg-cream-100">
-                Customer / Owner Login
-            </button>
-        </div>
-    </header>
-
-    <!-- ==========================================
-         MAIN CONTENT AREA (MULTI-PAGE VIEWS)
-    =========================================== -->
-    <main class="flex-1">
-
-        <!-- ******************************************
-             PAGE 1: HOME VIEW
-        ******************************************* -->
-        <div id="page-home" class="page-view">
-            <!-- Hero Section -->
-            <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 overflow-hidden">
-                <div class="absolute top-12 right-[-10%] w-[500px] h-[500px] bg-sage-200/35 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-                <div class="absolute bottom-0 left-[-8%] w-[420px] h-[420px] bg-terracotta-400/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-                        <!-- Left Editorial Copy -->
-                        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 border border-sage-200 text-sage-700 text-xs font-semibold uppercase tracking-wider">
-                                <i data-lucide="sprout" class="w-3.5 h-3.5 text-sage-600"></i>
-                                <span>Single-Estate Roastery, Glasshouse & Wood-Fired Kitchen</span>
-                            </div>
-
-                            <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-espresso-900 leading-[1.08] tracking-tight">
-                                Where Artisan Roast Meets <span class="italic font-normal text-sage-600">Botanical Calm.</span>
-                            </h1>
-
-                            <p class="text-base sm:text-lg text-espresso-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                                Sip high-altitude Chikmagalur & Araku espresso beneath sun-dappled ferns, alongside zero-proof botanical coolers, wood-fired sourdough pizzas, and gourmet brioche burgers.
-                            </p>
-
-                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                                <button onclick="navigateTo('menu')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-sage-700 hover:bg-sage-600 text-cream-50 font-semibold text-sm shadow-glow transition-all hover:-translate-y-0.5">
-                                    <span>Explore Full 36-Item Menu</span>
-                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                </button>
-                                <button onclick="navigateTo('visit')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-cream-100 hover:bg-cream-200 text-espresso-800 border border-cream-300 font-semibold text-sm transition-all">
-                                    <i data-lucide="calendar-heart" class="w-4 h-4 text-terracotta-500"></i>
-                                    <span>Book a Conservatory Table</span>
-                                </button>
-                            </div>
-
-                            <!-- Micro-Stats -->
-                            <div class="pt-6 border-t border-cream-200 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
-                                <div>
-                                    <p class="font-serif text-2xl sm:text-3xl font-bold text-espresso-900">100%</p>
-                                    <p class="text-xs text-espresso-600 mt-0.5">Direct-Trade Indian Estates</p>
-                                </div>
-                                <div>
-                                    <p class="font-serif text-2xl sm:text-3xl font-bold text-sage-600">36+</p>
-                                    <p class="text-xs text-espresso-600 mt-0.5">Brews, Shakes & Oven Bakes</p>
-                                </div>
-                                <div>
-                                    <p class="font-serif text-2xl sm:text-3xl font-bold text-terracotta-500">4.9 ★</p>
-                                    <p class="text-xs text-espresso-600 mt-0.5">Guest Rated Sanctuary</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Visual Arch -->
-                        <div class="lg:col-span-6 relative">
-                            <div class="relative mx-auto max-w-lg lg:max-w-none">
-                                <div class="relative rounded-t-[160px] rounded-b-[32px] overflow-hidden shadow-soft border-4 border-cream-100 aspect-[4/5] bg-cream-200">
-                                    <img 
-                                        src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85" 
-                                        alt="Sunlit botanical coffee shop interior with lush greenery and latte art" 
-                                        onerror="this.src='https://placehold.co/800x1000/DFE8E3/2C3E35?text=Blooming+Blossom+Conservatory'"
-                                        class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-                                    >
-                                    <div class="absolute inset-0 bg-gradient-to-t from-espresso-900/50 via-transparent to-transparent"></div>
-                                    <div class="absolute bottom-6 left-6 right-6 text-cream-50 flex items-end justify-between">
-                                        <div>
-                                            <span class="text-xs uppercase tracking-widest text-cream-200 block">The Glasshouse & Hearth</span>
-                                            <p class="font-serif text-2xl font-semibold">Morning Pour-Over & Oven Bar</p>
-                                        </div>
-                                        <span class="px-3 py-1 rounded-full bg-cream-50/20 backdrop-blur-md text-xs font-medium border border-white/20">
-                                            Open Today • 7:30am–10pm
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <!-- Floating Barista Pick Card (Opens Pop-up Modal on Click) -->
-                                <div onclick="openItemModal(7)" class="hidden sm:flex items-center gap-3.5 bg-cream-50/95 backdrop-blur-md p-4 rounded-2xl shadow-soft border border-cream-200 absolute -left-8 bottom-16 max-w-xs animate-float cursor-pointer hover:border-sage-600 transition-colors">
-                                    <img 
-                                        src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=200&q=80" 
-                                        alt="Lavender Honey Oat Latte"
-                                        onerror="this.src='https://placehold.co/100x100/C87D55/FFFFFF?text=Latte'"
-                                        class="w-14 h-14 rounded-xl object-cover flex-shrink-0"
-                                    >
-                                    <div>
-                                        <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-500">Barista Pick • ₹295</span>
-                                        <h4 class="font-serif text-lg font-bold text-espresso-900 leading-tight">Lavender Honey Oat Latte</h4>
-                                        <p class="text-xs text-espresso-600 mt-0.5">Tap to customize & order →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-                    <!-- Featured Seasonal Flight Strip (Clicking any item opens the Pop-up Modal) -->
-            <section class="py-12 bg-sage-700 text-cream-50 border-y border-sage-600">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 reveal-on-scroll">
-                        <div>
-                            <span class="text-xs uppercase tracking-[0.2em] text-oat-400 font-semibold">Conservatory & Hearth Signatures</span>
-                            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-cream-50 mt-1">Guest Favorites Across Kitchen & Bar</h2>
-                        </div>
-                        <button onclick="navigateTo('menu')" class="inline-flex items-center gap-2 text-sm font-semibold text-cream-200 hover:text-white transition-colors">
-                            <span>View All 36 Menu Items</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-on-scroll">
-                        <!-- Flight 1: Cardamom Saffron Latte -->
-                        <div onclick="openItemModal(10)" class="bg-sage-800/70 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-800 transition-colors cursor-pointer group">
-                            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80" alt="Cardamom Saffron Cortado Latte" onerror="this.src='https://placehold.co/150x150/3C594B/FAF7F2?text=Latte'" class="w-16 h-16 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform">
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between gap-2">
-                                    <h3 class="font-serif text-xl font-bold text-cream-50 truncate">Cardamom Saffron Latte</h3>
-                                    <span class="text-sm font-bold text-oat-400">₹285</span>
-                                </div>
-                                <p class="text-xs text-sage-100 line-clamp-2 mt-1">Double ristretto, Pampore saffron strands & crushed green cardamom.</p>
-                                <span class="mt-2.5 inline-block text-xs font-semibold text-cream-50 underline decoration-terracotta-400 underline-offset-4 group-hover:text-oat-400 transition-colors">
-                                    Select & Customize →
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Flight 2: Margherita Burrata Pizza -->
-                        <div onclick="openItemModal(28)" class="bg-sage-800/70 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-800 transition-colors cursor-pointer group">
-                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80" alt="Margherita Burrata & Fresh Basil Sourdough Pizza" onerror="this.src='https://placehold.co/150x150/3C594B/FAF7F2?text=Pizza'" class="w-16 h-16 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform">
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between gap-2">
-                                    <h3 class="font-serif text-xl font-bold text-cream-50 truncate">Margherita Burrata Pizza</h3>
-                                    <span class="text-sm font-bold text-oat-400">₹490</span>
-                                </div>
-                                <p class="text-xs text-sage-100 line-clamp-2 mt-1">48-hour fermented sourdough crust, San Marzano tomatoes & creamy burrata.</p>
-                                <span class="mt-2.5 inline-block text-xs font-semibold text-cream-50 underline decoration-terracotta-400 underline-offset-4 group-hover:text-oat-400 transition-colors">
-                                    Select & Customize →
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Flight 3: Belgian Dark Chocolate & Hazelnut Shake -->
-                        <div onclick="openItemModal(23)" class="bg-sage-800/70 border border-sage-600/60 rounded-2xl p-5 flex items-center gap-4 hover:bg-sage-800 transition-colors cursor-pointer group">
-                            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=300&q=80" alt="Belgian Dark Chocolate & Roasted Hazelnut Thick Shake" onerror="this.src='https://placehold.co/150x150/3C594B/FAF7F2?text=Shake'" class="w-16 h-16 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform">
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between gap-2">
-                                    <h3 class="font-serif text-xl font-bold text-cream-50 truncate">Belgian Hazelnut Shake</h3>
-                                    <span class="text-sm font-bold text-oat-400">₹320</span>
-                                </div>
-                                <p class="text-xs text-sage-100 line-clamp-2 mt-1">70% dark couverture gelato spun with roasted Piedmont hazelnut praline.</p>
-                                <span class="mt-2.5 inline-block text-xs font-semibold text-cream-50 underline decoration-terracotta-400 underline-offset-4 group-hover:text-oat-400 transition-colors">
-                                    Select & Customize →
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ==========================================
-                 POETIC BOTANICAL & CULINARY QUOTE SHOWCASE
-            =========================================== -->
+        =========================================== -->
             <section class="py-16 sm:py-20 bg-cream-100/70 border-b border-cream-200 relative overflow-hidden">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal-on-scroll">
                     <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-sage-700/10 text-sage-700 mb-5">
@@ -826,10 +318,13 @@
                         </div>
                     </div>
 
-                    <!-- Category Filter Pills (8 Categories Covering All 36 Items) -->
+                    <!-- Category Filter Pills (9 Categories Covering All 54 Items) -->
                     <div class="flex flex-wrap items-center gap-2 mb-6" id="category-filters">
                         <button data-category="all" onclick="filterMenu('all')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-sage-700 text-cream-50 shadow-xs">
-                            All (36)
+                            All (54)
+                        </button>
+                        <button data-category="under100" onclick="filterMenu('under100')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-terracotta-500/15 text-terracotta-600 border border-terracotta-400/40 hover:bg-terracotta-500/25">
+                            ✨ Under ₹100 Bites & Sips (8)
                         </button>
                         <button data-category="espresso" onclick="filterMenu('espresso')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
                             Signature Espresso (6)
@@ -841,13 +336,13 @@
                             Cold Brews & Refreshers (4)
                         </button>
                         <button data-category="shakes" onclick="filterMenu('shakes')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
-                            Shakes & Non-Alcoholic (5)
+                            Shakes & Beverages (9)
                         </button>
                         <button data-category="pizzas" onclick="filterMenu('pizzas')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
-                            Wood-Fired Pizzas (4)
+                            Wood-Fired Pizzas (7)
                         </button>
                         <button data-category="burgers" onclick="filterMenu('burgers')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
-                            Burgers & Fries (5)
+                            Burgers & Fries (8)
                         </button>
                         <button data-category="bakes" onclick="filterMenu('bakes')" class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-cream-100 text-espresso-700 hover:bg-cream-200">
                             Artisan Bakes (5)
@@ -893,7 +388,7 @@
                     <div id="menu-empty" class="hidden text-center py-16 bg-cream-100/60 rounded-3xl border border-cream-200">
                         <i data-lucide="coffee" class="w-10 h-10 text-sage-600 mx-auto mb-3"></i>
                         <h3 class="font-serif text-2xl font-bold text-espresso-900">No matching offerings found</h3>
-                        <p class="text-sm text-espresso-600 mt-1">Try clearing your search or dietary filter to view all 36 items.</p>
+                        <p class="text-sm text-espresso-600 mt-1">Try clearing your search or dietary filter to view all 54 items.</p>
                         <button onclick="resetFilters()" class="mt-4 px-5 py-2.5 rounded-full bg-sage-700 text-cream-50 text-xs font-semibold">Reset All Filters</button>
                     </div>
                 </div>
@@ -1687,43 +1182,43 @@
                                     <input type="text" id="config-emailjs-cust-tpl" placeholder="e.g. template_receipt" class="w-full px-3 py-2 rounded-lg bg-cream-50 border border-cream-300 text-xs">
                                 </div>
                             </div>
-                            <div class="flex justify-end">
-                                <button type="button" onclick="saveEmailConfigSettings()" class="px-5 py-2.5 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 font-bold text-xs">
-                                    Save Mail Configuration
+                            <div class="flex justify-end pt-2">
+                                <button type="button" onclick="saveEmailConfigSettings()" class="px-5 py-2.5 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 font-bold text-xs transition-colors">
+                                    Save Mail Settings
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Owner KPI Stats Row -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            <div class="bg-white p-6 rounded-3xl border border-cream-200 shadow-card">
-                                <span class="text-xs font-bold uppercase tracking-wider text-espresso-500">Total Paid Orders</span>
-                                <p id="owner-stat-orders" class="font-serif text-4xl font-bold text-espresso-900 mt-1">0</p>
-                                <span class="text-[11px] text-sage-700 font-semibold mt-1 block">Today & Previous Days</span>
+                        <!-- Owner Live KPI Summary Strip -->
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                            <div class="bg-white p-5 rounded-3xl border border-cream-200 shadow-card">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-espresso-500">Total Orders</span>
+                                <p id="owner-stat-orders" class="font-serif text-3xl font-bold text-espresso-900 mt-1">0</p>
                             </div>
-                            <div class="bg-white p-6 rounded-3xl border border-cream-200 shadow-card">
-                                <span class="text-xs font-bold uppercase tracking-wider text-espresso-500">In Queue / Incomplete</span>
-                                <p id="owner-stat-pending-mail" class="font-serif text-4xl font-bold text-terracotta-500 mt-1">0</p>
-                                <span class="text-[11px] text-espresso-600 mt-1 block">Awaiting completion</span>
+                            <div class="bg-white p-5 rounded-3xl border border-cream-200 shadow-card">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-espresso-500">Revenue (INR)</span>
+                                <p id="owner-stat-revenue" class="font-serif text-3xl font-bold text-sage-700 mt-1">₹0</p>
                             </div>
-                            <div class="bg-white p-6 rounded-3xl border border-cream-200 shadow-card">
-                                <span class="text-xs font-bold uppercase tracking-wider text-espresso-500">Completed Orders</span>
-                                <p id="owner-stat-completed" class="font-serif text-4xl font-bold text-sage-700 mt-1">0</p>
-                                <span class="text-[11px] text-sage-700 font-semibold mt-1 block">Fulfilled & Served</span>
+                            <div class="bg-white p-5 rounded-3xl border border-terracotta-400/50 shadow-card">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-terracotta-600">Incomplete / Queue</span>
+                                <p id="owner-stat-pending-mail" class="font-serif text-3xl font-bold text-terracotta-600 mt-1">0</p>
                             </div>
-                            <div class="bg-white p-6 rounded-3xl border border-cream-200 shadow-card">
-                                <span class="text-xs font-bold uppercase tracking-wider text-espresso-500">Total Revenue (INR)</span>
-                                <p id="owner-stat-revenue" class="font-serif text-4xl font-bold text-espresso-900 mt-1">₹0</p>
-                                <span id="owner-stat-sent-mail-wrap" class="text-[11px] text-sage-700 font-semibold mt-1 block">Emails Sent: <span id="owner-stat-sent-mail">0</span></span>
+                            <div class="bg-white p-5 rounded-3xl border border-sage-300 shadow-card">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-sage-700">Completed Orders</span>
+                                <p id="owner-stat-completed" class="font-serif text-3xl font-bold text-sage-700 mt-1">0</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl border border-cream-200 shadow-card col-span-2 sm:col-span-1">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-espresso-500">Emails Sent</span>
+                                <p id="owner-stat-sent-mail" class="font-serif text-3xl font-bold text-espresso-900 mt-1">0</p>
                             </div>
                         </div>
 
-                        <!-- Live & Previous Days Customer Orders List with Queue Status & Exclusive Owner Mail Buttons -->
-                        <div class="space-y-4">
+                        <!-- Live & Previous Days Customer Orders List with Separate Incomplete & Completed Windows -->
+                        <div class="space-y-5">
                             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                                 <div>
                                     <h2 class="font-serif text-2xl sm:text-3xl font-bold text-espresso-900">Customer Orders Queue & Archive</h2>
-                                    <p class="text-xs sm:text-sm text-espresso-600">Track incomplete orders in queue, mark orders completed, browse previous days' archived orders, and send owner/customer emails.</p>
+                                    <p class="text-xs sm:text-sm text-espresso-600">Separate Incomplete & Completed order windows storing complete customer, item, payment, and timestamp records.</p>
                                 </div>
 
                                 <!-- Day & Queue Filter Tabs -->
@@ -1746,8 +1241,47 @@
                                 </div>
                             </div>
 
-                            <div id="owner-orders-container" class="space-y-4">
-                                <!-- Populated dynamically with today & previous days orders -->
+                            <!-- TWO SEPARATE WINDOWS: INCOMPLETE (IN QUEUE) WINDOW & COMPLETED ORDERS WINDOW -->
+                            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+                                <!-- WINDOW 1: INCOMPLETE / IN QUEUE ORDERS WINDOW -->
+                                <div class="bg-cream-100/70 rounded-3xl p-5 sm:p-6 border-2 border-terracotta-400/50 space-y-4">
+                                    <div class="flex items-center justify-between pb-3 border-b border-cream-300">
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="w-9 h-9 rounded-xl bg-terracotta-500 text-white flex items-center justify-center shadow-xs">
+                                                <i class="fa-solid fa-hourglass-half"></i>
+                                            </span>
+                                            <div>
+                                                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso-900">Incomplete Orders Window</h3>
+                                                <p class="text-[11px] text-espresso-600">Stored active orders currently in queue awaiting completion</p>
+                                            </div>
+                                        </div>
+                                        <span id="window-incomplete-badge" class="px-3 py-1 rounded-full bg-terracotta-500 text-white text-xs font-bold">0 In Queue</span>
+                                    </div>
+
+                                    <div id="owner-incomplete-orders-container" class="space-y-4">
+                                        <!-- Populated dynamically with Incomplete / In Queue orders -->
+                                    </div>
+                                </div>
+
+                                <!-- WINDOW 2: COMPLETED ORDERS WINDOW -->
+                                <div class="bg-sage-50/80 rounded-3xl p-5 sm:p-6 border-2 border-sage-400/50 space-y-4">
+                                    <div class="flex items-center justify-between pb-3 border-b border-sage-200">
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="w-9 h-9 rounded-xl bg-sage-700 text-cream-50 flex items-center justify-center shadow-xs">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                            </span>
+                                            <div>
+                                                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso-900">Completed Orders Window</h3>
+                                                <p class="text-[11px] text-espresso-600">Stored fulfilled orders with completion timestamp & receipt logs</p>
+                                            </div>
+                                        </div>
+                                        <span id="window-completed-badge" class="px-3 py-1 rounded-full bg-sage-700 text-cream-50 text-xs font-bold">0 Completed</span>
+                                    </div>
+
+                                    <div id="owner-completed-orders-container" class="space-y-4">
+                                        <!-- Populated dynamically with Completed orders -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2009,8 +1543,114 @@
          JAVASCRIPT MULTI-PAGE, POP-UP MODAL & COMMERCE ENGINE
     =========================================== -->
     <script>
-        // 1. COMPLETE 36-ITEM SPECIALTY CAFE, BAR & HEARTH KITCHEN MENU (IN INR ₹)
+        // 1. COMPLETE 54-ITEM SPECIALTY CAFE, BAR & HEARTH KITCHEN MENU (IN INR ₹)
         const menuItems = [
+            // --- CATEGORY 0: UNDER ₹100 POCKET-FRIENDLY BITES & SIPS (8 ITEMS) ---
+            {
+                id: 37,
+                name: "Garden Mint & Gondhoraj Nimbu Fizz",
+                category: "under100",
+                price: 79,
+                description: "Freshly squeezed aromatic Gondhoraj lime, crushed garden mint leaves, black salt, and chilled sparkling soda.",
+                tags: ["Vegan", "Gluten-Free", "Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Fizz Preference",
+                options: ["Sweet & Tangy Classic", "Masala Spiced Nimbu", "Sugar-Free Lime Soda"],
+                image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/3C594B/FAF7F2?text=Mint+Nimbu+Fizz+79"
+            },
+            {
+                id: 38,
+                name: "Filter Kaapi Shot & Biscuit Duo",
+                category: "under100",
+                price: 85,
+                description: "Traditional Chikmagalur brass-filter decoction frothed with farm milk, served alongside a crisp cardamom butter biscuit.",
+                tags: ["Bestseller", "House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Sugar & Strength",
+                options: ["Classic Medium Sweet", "Strong & Less Sweet", "Unsweetened"],
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/3B2820/FAF7F2?text=Filter+Kaapi+85"
+            },
+            {
+                id: 39,
+                name: "Herbed Sourdough Garlic Breadsticks (4 Pcs)",
+                category: "under100",
+                price: 89,
+                description: "Warm hearth-baked sourdough strips brushed with roasted garlic-parsley butter and served with house marinara dip.",
+                tags: ["Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Dip Selection",
+                options: ["San Marzano Marinara Dip", "Cheesy Jalapeno Dip", "Vegan Herb Olive Oil"],
+                image: "https://images.unsplash.com/photo-1573140401552-3fab0b24306f?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/C87D55/FAF7F2?text=Garlic+Breadsticks+89"
+            },
+            {
+                id: 40,
+                name: "Crispy Masala Mini Potato Wedges",
+                category: "under100",
+                price: 95,
+                description: "Golden skin-on baby potato wedges dusted with smoked paprika, oregano, and sea salt with tangy tomato salsa.",
+                tags: ["Vegan", "Gluten-Free", "Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Seasoning Style",
+                options: ["Classic Herb & Sea Salt", "Peri-Peri Spice Dust"],
+                image: "https://images.unsplash.com/photo-1623238913973-21e45cced554?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/D4A373/1B110D?text=Mini+Potato+Wedges+95"
+            },
+            {
+                id: 41,
+                name: "Warm Sea Salt Dark Chocolate Chunk Cookie",
+                category: "under100",
+                price: 85,
+                description: "Soft-centered brown butter cookie loaded with 70% dark couverture chocolate chunks and Maldon sea salt flakes.",
+                tags: ["Bestseller", "House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Serving Preference",
+                options: ["Warmed Gooey", "Room Temperature Crisp"],
+                image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/5C4033/FAF7F2?text=Choco+Chunk+Cookie+85"
+            },
+            {
+                id: 42,
+                name: "Iced Hibiscus & Peach Tea Cooler",
+                category: "under100",
+                price: 90,
+                description: "Chilled ruby hibiscus petal infusion lightly sweetened with white peach nectar and served over crystal ice.",
+                tags: ["Vegan", "Gluten-Free"],
+                customizableDrink: false,
+                optionLabelTitle: "Sweetness",
+                options: ["Lightly Sweetened", "Unsweetened Botanical"],
+                image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/A8613B/FAF7F2?text=Hibiscus+Iced+Tea+90"
+            },
+            {
+                id: 43,
+                name: "Spiced Paneer & Corn Mini Puff",
+                category: "under100",
+                price: 95,
+                description: "Flaky golden puff pastry pocket stuffed with herb-tossed cottage cheese, sweet corn, and cracked black pepper.",
+                tags: ["Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Serving",
+                options: ["Oven Warmed + Mint Chutney", "Crisp Takeaway Box"],
+                image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/C87D55/FAF7F2?text=Paneer+Corn+Puff+95"
+            },
+            {
+                id: 44,
+                name: "Classic Vanilla Bean Cold Coffee Cup",
+                category: "under100",
+                price: 99,
+                description: "Smooth shaken Chikmagalur espresso with chilled creamy milk and a hint of Madagascar vanilla.",
+                tags: ["Bestseller", "Gluten-Free"],
+                customizableDrink: false,
+                optionLabelTitle: "Milk Option",
+                options: ["Chilled Farm Milk", "Oat Milk (Vegan)"],
+                image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/3B2820/FAF7F2?text=Cold+Coffee+99"
+            },
+
             // --- CATEGORY 1: SIGNATURE ESPRESSO (6 ITEMS) ---
             {
                 id: 1,
@@ -2262,8 +1902,60 @@
                 image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=700&q=80",
                 fallback: "https://placehold.co/600x450/5C4033/FAF7F2?text=Biscoff+Espresso+Shake"
             },
+            {
+                id: 45,
+                name: "Strawberry Cheesecake & Vanilla Bean Thick Shake",
+                category: "shakes",
+                price: 315,
+                description: "Mahabaleshwar strawberries macerated in vanilla bean syrup, blended with cream cheese gelato and graham cracker crumble.",
+                tags: ["Bestseller", "House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Topping Style",
+                options: ["Whipped Cream & Graham Crumble", "Fresh Berry Compote Only"],
+                image: "https://images.unsplash.com/photo-1553177595-4de2bb0842b9?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/D98E66/FAF7F2?text=Strawberry+Cheesecake+Shake"
+            },
+            {
+                id: 46,
+                name: "Oreo Cookies & Madagascar Vanilla Cream Shake",
+                category: "shakes",
+                price: 295,
+                description: "Crushed dark cocoa sandwich cookies spun thick with Madagascar vanilla bean ice cream and chocolate fudge drizzle.",
+                tags: ["Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Base & Drizzle",
+                options: ["Classic Gelato + Fudge Swirl", "Soy Gelato (Vegan) + Oreo Crumble"],
+                image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/2A1C16/FAF7F2?text=Oreo+Cream+Shake"
+            },
+            {
+                id: 47,
+                name: "Blueberry Lavender & Butterfly Pea Lemonade",
+                category: "shakes",
+                price: 255,
+                description: "Color-changing butterfly pea flower tea layered over crushed wild blueberries, culinary lavender, and sparkling lemon.",
+                tags: ["Vegan", "Gluten-Free", "House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Ice & Sweetness",
+                options: ["Regular Ice & Honey-Agave", "Light Ice & Less Sweet"],
+                image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/3C594B/FAF7F2?text=Blueberry+Lavender+Cooler"
+            },
+            {
+                id: 48,
+                name: "Roasted Pistachio & Rose Kulfi Falooda Shake",
+                category: "shakes",
+                price: 335,
+                description: "Iranian green pistachio gelato blended with Kannauj rose petal preserve, soaked basil seeds, and slivered almonds.",
+                tags: ["House Special", "Gluten-Free"],
+                customizableDrink: false,
+                optionLabelTitle: "Garnish Preference",
+                options: ["With Sabja Seeds & Rose Petals", "Plain Creamy Pistachio Shake"],
+                image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/2C3E35/FAF7F2?text=Pistachio+Rose+Shake"
+            },
 
-            // --- CATEGORY 5: WOOD-FIRED OVEN PIZZAS (4 ITEMS) ---
+            // --- CATEGORY 5: WOOD-FIRED OVEN PIZZAS (7 ITEMS) ---
             {
                 id: 28,
                 name: "Margherita Burrata & Fresh Basil Sourdough Pizza",
@@ -2316,8 +2008,47 @@
                 image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=700&q=80",
                 fallback: "https://placehold.co/600x450/A8613B/FAF7F2?text=Spicy+Arrabbiata+Pizza"
             },
+            {
+                id: 49,
+                name: "Quattro Formaggi Four-Cheese & Hot Honey Pizza",
+                category: "pizzas",
+                price: 575,
+                description: "Blistered sourdough crust topped with aged parmesan, creamy gorgonzola, smoked scamorza, mozzarella, and chili-infused honey.",
+                tags: ["Bestseller", "House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Honey & Crust",
+                options: ["11\" Sourdough + Chili Hot Honey", "11\" Sourdough (No Honey)", "Gluten-Free Millet Crust (+₹60)|60"],
+                image: "https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/D4A373/1B110D?text=Four+Cheese+Pizza"
+            },
+            {
+                id: 50,
+                name: "Smoky BBQ Jackfruit, Jalapeno & Red Paprika Pizza",
+                category: "pizzas",
+                price: 530,
+                description: "Hickory-smoked pulled tender jackfruit, pickled jalapenos, charred red paprika, sweet corn, and melted cheddar-mozzarella.",
+                tags: ["Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Cheese Preference",
+                options: ["Cheddar & Mozzarella Blend", "100% Vegan Plant-Based Mozzarella"],
+                image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/A8613B/FAF7F2?text=BBQ+Jackfruit+Pizza"
+            },
+            {
+                id: 51,
+                name: "Mediterranean Sun-Dried Tomato, Artichoke & Feta Pizza",
+                category: "pizzas",
+                price: 545,
+                description: "Herbed olive oil base with marinated artichoke hearts, sun-dried tomatoes, barrel-aged feta, kalamata olives, and baby spinach.",
+                tags: ["House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Crust Selection",
+                options: ["11\" Classic Fermented Sourdough", "Gluten-Free Millet Crust (+₹60)|60"],
+                image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/3C594B/FAF7F2?text=Mediterranean+Feta+Pizza"
+            },
 
-            // --- CATEGORY 6: ARTISAN BURGERS & FRIES (5 ITEMS) ---
+            // --- CATEGORY 6: ARTISAN BURGERS & FRIES (8 ITEMS) ---
             {
                 id: 32,
                 name: "Crispy Herb Brioche Smash Burger with Truffle Aioli",
@@ -2382,6 +2113,45 @@
                 options: ["Classic Truffle & Aged Parmesan", "Extra Truffle Crema & Chives"],
                 image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=700&q=80",
                 fallback: "https://placehold.co/600x450/5C4033/FAF7F2?text=Truffle+Parmesan+Fries"
+            },
+            {
+                id: 52,
+                name: "Double Cheddar & Caramelized Onion Smash Burger",
+                category: "burgers",
+                price: 445,
+                description: "Two crispy-edged smashed herb-bean & mushroom patties layered with double sharp cheddar, bourbon-free maple onions, and gherkins.",
+                tags: ["Bestseller", "House Special"],
+                customizableDrink: false,
+                optionLabelTitle: "Bun & Side Combo",
+                options: ["Toasted Butter Brioche + House Slaw", "Add Skin-On Fries (+₹90)|90"],
+                image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/3B2820/FAF7F2?text=Double+Cheddar+Burger"
+            },
+            {
+                id: 53,
+                name: "Korean Gochujang Crispy Mushroom & Kimchi Burger",
+                category: "burgers",
+                price: 430,
+                description: "Panko-crusted king oyster mushroom glazed in sweet-spicy gochujang, house lacto-fermented slaw, and sesame aioli on brioche.",
+                tags: ["Vegan", "House Special", "Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Spice & Side",
+                options: ["Balanced Sweet-Heat Glaze", "Extra Spicy Gochujang + Fries (+₹90)|90"],
+                image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/A8613B/FAF7F2?text=Korean+Mushroom+Burger"
+            },
+            {
+                id: 54,
+                name: "Smoky Chipotle Black Bean & Nacho Crunch Burger",
+                category: "burgers",
+                price: 395,
+                description: "Spiced black bean and roasted corn patty topped with melted queso, crushed tortilla chips, pico de gallo, and chipotle crema.",
+                tags: ["Bestseller"],
+                customizableDrink: false,
+                optionLabelTitle: "Preparation & Side",
+                options: ["Classic Brioche + Pickled Jalapenos", "Vegan Sesame Bun + Guacamole"],
+                image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=700&q=80",
+                fallback: "https://placehold.co/600x450/5C4033/FAF7F2?text=Chipotle+Nacho+Burger"
             },
 
             // --- CATEGORY 7: ARTISAN BAKES & SAVORY (5 ITEMS) ---
@@ -2815,7 +2585,6 @@
             try {
                 savedThemeMode = localStorage.getItem(GLOBAL_THEME_STORAGE_KEY) || 'auto';
             } catch (e) {}
-            renderBlossomFlowers('morning');
             applyTimeTheme(savedThemeMode, true);
             initScrollRevealAnimations();
 
@@ -2835,49 +2604,6 @@
         });
 
         // ==========================================
-        // BLOSSOM FLOWER PETAL GENERATOR (ALL THEMES)
-        // ==========================================
-        function renderBlossomFlowers(resolvedPeriod = 'morning') {
-            const container = document.getElementById('blossom-petals-layer');
-            if (!container) return;
-
-            const paletteByPeriod = {
-                morning: ['#FF9EB5', '#FFB7C5', '#FFC8B4', '#F47C98', '#FFD6CC'],
-                afternoon: ['#FFB5C5', '#FFD1C1', '#F79BB0', '#FFE0D6', '#F4A29E'],
-                evening: ['#F7A8B8', '#F5B895', '#E88DA3', '#FAD0C4', '#D98E66']
-            };
-            const colors = paletteByPeriod[resolvedPeriod] || paletteByPeriod.morning;
-            const petalCount = 22;
-
-            container.innerHTML = Array.from({ length: petalCount }).map((_, idx) => {
-                const leftPct = ((idx * 17.3) % 98) + 1;
-                const duration = (11 + (idx % 7) * 1.8).toFixed(1);
-                const delay = -((idx * 1.4) % 14).toFixed(1);
-                const swayX = ((idx % 2 === 0 ? 1 : -1) * (28 + (idx % 5) * 14)) + 'px';
-                const scale = (0.72 + (idx % 4) * 0.16).toFixed(2);
-                const opacity = (resolvedPeriod === 'evening' ? 0.55 : 0.78).toFixed(2);
-                const fill = colors[idx % colors.length];
-                const isFullBloom = idx % 3 === 0;
-
-                const svgGraphic = isFullBloom
-                    ? `<svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 3C18.8 7.2 19.2 11.4 16 14.5C12.8 11.4 13.2 7.2 16 3Z" fill="${fill}"/>
-                        <path d="M29 13C24.8 15.8 20.6 16.2 17.5 13C20.6 9.8 24.8 10.2 29 13Z" fill="${fill}"/>
-                        <path d="M24 27C19.5 25.1 17 21.8 17.5 17.5C21.8 17 25.1 19.5 24 27Z" fill="${fill}"/>
-                        <path d="M8 27C6.9 19.5 10.2 17 14.5 17.5C15 21.8 12.5 25.1 8 27Z" fill="${fill}"/>
-                        <path d="M3 13C7.2 10.2 11.4 9.8 14.5 13C11.4 16.2 7.2 15.8 3 13Z" fill="${fill}"/>
-                        <circle cx="16" cy="15.5" r="2.3" fill="#FFF0F3"/>
-                       </svg>`
-                    : `<svg width="18" height="22" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 1C15.5 6.5 18 13.5 10 24.5C2 13.5 4.5 6.5 10 1Z" fill="${fill}"/>
-                        <path d="M10 4C10 10 10 16 10 21" stroke="#FFF5F7" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round"/>
-                       </svg>`;
-
-                return `<div class="blossom-petal" style="left:${leftPct}%; --fall-duration:${duration}s; --fall-delay:${delay}s; --sway-x:${swayX}; --petal-scale:${scale}; --petal-opacity:${opacity};">${svgGraphic}</div>`;
-            }).join('');
-        }
-
-        // ==========================================
         // TIME-OF-DAY THEME ENGINE & OWNER-ONLY CROSS-DEVICE OVERRIDE
         // ==========================================
         let currentThemeMode = 'auto';
@@ -2886,7 +2612,7 @@
             morning: {
                 bodyClass: 'theme-morning',
                 iconHtml: '<i class="fa-solid fa-spa"></i>',
-                statusText: 'Pinkish Peach Blossom Morning • Cherry Blossom Petals & Crisp Pour-Overs',
+                statusText: 'Pinkish Peach Blossom Morning • Warm Rose & Crisp Pour-Overs',
                 badgeText: 'Morning Ritual Picks (6 AM – 12 PM)',
                 headingText: 'Awaken With Single-Estate Espresso & Warm Bakes',
                 subtitleText: 'Bright, aromatic Chikmagalur & Araku coffees paired with flaky sourdough croissants for a serene start.',
@@ -2896,8 +2622,8 @@
             },
             afternoon: {
                 bodyClass: 'theme-afternoon',
-                iconHtml: '<i class="fa-solid fa-cloud-sun"></i>',
-                statusText: 'Afternoon Emerald Glasshouse • Deep Botanical Sage, Cold Brews & Burgers',
+                iconHtml: '<i class="fa-solid fa-water"></i>',
+                statusText: 'Afternoon Blue & SeaGreen Sanctuary • Cool Breeze, Cold Brews & Burgers',
                 badgeText: 'Afternoon Refresher & Lunch Picks (12 PM – 5 PM)',
                 headingText: 'Cool Botanical Spritzes, Shakes & Artisan Burgers',
                 subtitleText: 'Beat the midday warmth with 18-hour Kyoto cold brews, Alphonso saffron shakes, and cast-iron brioche smash burgers.',
@@ -2968,9 +2694,6 @@
             if (cfg.bodyClass) {
                 document.body.classList.add(cfg.bodyClass);
             }
-
-            // Refresh falling blossom flower petals tinted for the active theme
-            renderBlossomFlowers(resolvedPeriod);
 
             // Update top ambience bar (read-only status for visitors)
             const iconEl = document.getElementById('time-theme-icon');
@@ -3141,46 +2864,30 @@
         }
 
         // 5. RENDER MENU CATALOG (ALL CARD ACTIONS OPEN INTERACTIVE POP-UP MODAL)
-        function renderMenu() {
-            const grid = document.getElementById('menu-grid');
-            const emptyState = document.getElementById('menu-empty');
+        let menuRenderRaf = null;
+        let searchDebounceTimer = null;
 
-            const filtered = menuItems.filter(item => {
-                const matchesCat = activeCategory === 'all' || item.category === activeCategory;
-                const matchesDiet = !activeDietary || item.tags.includes(activeDietary);
-                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      item.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
-                return matchesCat && matchesDiet && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                if (window.lucide) lucide.createIcons();
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            grid.innerHTML = filtered.map(item => `
-                <article onclick="openItemModal(${item.id})" class="group bg-white rounded-3xl overflow-hidden border border-cream-200/90 shadow-card hover:shadow-soft transition-all duration-300 flex flex-col cursor-pointer">
+        function buildMenuCardHtml(item) {
+            return `
+                <article onclick="openItemModal(${item.id})" class="menu-card-item group bg-white rounded-3xl overflow-hidden border border-cream-200/90 shadow-card hover:shadow-soft transition-shadow duration-200 flex flex-col cursor-pointer">
                     <!-- Image Header -->
                     <div class="relative aspect-[4/3] overflow-hidden bg-cream-200">
                         <img 
                             src="${item.image}" 
                             alt="${item.name}" 
-                            onerror="this.src='${item.fallback}'"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='${item.fallback}'"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         >
                         <!-- Dietary / Feature Badges -->
                         <div class="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5">
                             ${item.tags.map(tag => `
-                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide backdrop-blur-md ${
-                                    tag === 'Vegan' ? 'bg-sage-700/90 text-cream-50' :
-                                    tag === 'Bestseller' ? 'bg-terracotta-500/95 text-white' :
-                                    tag === 'House Special' ? 'bg-espresso-800/90 text-oat-400' :
-                                    'bg-cream-50/90 text-espresso-900'
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide shadow-2xs ${
+                                    tag === 'Vegan' ? 'bg-sage-700 text-cream-50' :
+                                    tag === 'Bestseller' ? 'bg-terracotta-500 text-white' :
+                                    tag === 'House Special' ? 'bg-espresso-800 text-oat-400' :
+                                    'bg-cream-50 text-espresso-900'
                                 }">
                                     ${tag}
                                 </span>
@@ -3214,7 +2921,7 @@
                             <button 
                                 type="button"
                                 onclick="event.stopPropagation(); openItemModal(${item.id})" 
-                                class="flex-1 py-3 px-3 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 active:scale-[0.98]"
+                                class="flex-1 py-3 px-3 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5"
                             >
                                 <i class="fa-solid fa-bag-shopping text-[11px]"></i>
                                 <span>Select Item</span>
@@ -3222,8 +2929,51 @@
                         </div>
                     </div>
                 </article>
-            `).join('');
-            if (window.lucide) lucide.createIcons();
+            `;
+        }
+
+        function renderMenu() {
+            const grid = document.getElementById('menu-grid');
+            const emptyState = document.getElementById('menu-empty');
+            if (!grid) return;
+
+            if (menuRenderRaf) {
+                cancelAnimationFrame(menuRenderRaf);
+                menuRenderRaf = null;
+            }
+
+            const q = searchQuery.toLowerCase();
+            const filtered = menuItems.filter(item => {
+                const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+                const matchesDiet = !activeDietary || item.tags.includes(activeDietary);
+                const matchesSearch = !q ||
+                                      item.name.toLowerCase().includes(q) ||
+                                      item.description.toLowerCase().includes(q) ||
+                                      item.category.toLowerCase().includes(q) ||
+                                      item.tags.some(t => t.toLowerCase().includes(q));
+                return matchesCat && matchesDiet && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                if (window.lucide) lucide.createIcons();
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            // Render first 12 cards immediately for instant paint, then stream remaining cards in next frame
+            const initialBatch = filtered.slice(0, 12);
+            const remainingBatch = filtered.slice(12);
+            grid.innerHTML = initialBatch.map(buildMenuCardHtml).join('');
+
+            if (remainingBatch.length > 0) {
+                menuRenderRaf = requestAnimationFrame(() => {
+                    grid.insertAdjacentHTML('beforeend', remainingBatch.map(buildMenuCardHtml).join(''));
+                    menuRenderRaf = null;
+                });
+            }
         }
 
         // 6. MENU FILTERING & SEARCH
@@ -3252,8 +3002,11 @@
         }
 
         function handleSearch(val) {
-            searchQuery = val.trim();
-            renderMenu();
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(() => {
+                searchQuery = val.trim();
+                renderMenu();
+            }, 140);
         }
 
         function resetFilters() {
@@ -4110,10 +3863,126 @@
         }
 
         // RENDER OWNER PORTAL ORDERS & EXCLUSIVE MAIL CONTROLS
+        // RENDER SEPARATE COMPLETE & INCOMPLETE ORDER WINDOWS WITH FULL STORED ORDER INFO
+        function buildOwnerOrderCardHtml(order, todayKey) {
+            const payloads = buildOrderEmailPayloads(order);
+            const isCompleted = order.completionStatus === 'completed';
+            const isPreviousDay = (order.orderDateKey || todayKey) !== todayKey;
+
+            return `
+                <div class="bg-white rounded-3xl p-5 border ${isCompleted ? 'border-sage-300' : 'border-terracotta-400/60'} shadow-card space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-cream-200">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="font-mono font-bold text-sm px-2.5 py-1 rounded-xl bg-espresso-900 text-oat-400">#${order.orderId}</span>
+                            ${isCompleted
+                                ? `<span class="px-2.5 py-1 rounded-full bg-sage-700 text-cream-50 text-[11px] font-bold inline-flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check"></i> Completed ${order.completedAt ? '• ' + order.completedAt : ''}
+                                   </span>`
+                                : `<span class="px-2.5 py-1 rounded-full bg-terracotta-500/15 border border-terracotta-500/40 text-terracotta-600 text-[11px] font-bold inline-flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-terracotta-500 animate-ping"></span> Incomplete • In Queue
+                                   </span>`
+                            }
+                            ${isPreviousDay
+                                ? `<span class="px-2 py-0.5 rounded-full bg-cream-200 text-espresso-800 text-[10px] font-bold">
+                                    <i class="fa-regular fa-calendar"></i> ${order.orderDateKey}
+                                   </span>`
+                                : `<span class="px-2 py-0.5 rounded-full bg-sage-100 text-sage-800 text-[10px] font-bold">Today</span>`
+                            }
+                        </div>
+
+                        <div class="flex items-center gap-2.5">
+                            <span class="font-serif text-xl font-bold text-sage-700">₹${order.grandTotal}</span>
+                            <button type="button" onclick="toggleOrderCompletionStatus('${order.orderId}')" class="px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex items-center gap-1.5 shadow-2xs ${
+                                isCompleted
+                                    ? 'bg-cream-200 hover:bg-cream-300 text-espresso-900'
+                                    : 'bg-sage-700 hover:bg-sage-600 text-cream-50'
+                            }">
+                                <i class="fa-solid ${isCompleted ? 'fa-rotate-left' : 'fa-check-double'}"></i>
+                                <span>${isCompleted ? 'Move to Incomplete' : 'Mark Completed'}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stored Customer, Payment & Order Details -->
+                    <div class="space-y-2.5 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-cream-50 p-3 rounded-2xl border border-cream-200">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider text-espresso-500 font-bold block">Customer Info</span>
+                                <span class="font-bold text-espresso-900 text-sm">${order.customerName}</span>
+                                <span class="block text-espresso-700">${order.customerPhone}</span>
+                                <span class="font-mono font-semibold text-sage-800 text-[11px] break-all">${order.customerEmail}</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider text-espresso-500 font-bold block">Order & Payment Info</span>
+                                <span class="block text-espresso-800 font-semibold">${order.fulfillmentText}</span>
+                                <span class="block text-espresso-700">${order.payMethodLabel}</span>
+                                <span class="block text-espresso-500 text-[11px]">Placed: ${order.timestamp}</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-cream-50/60 p-3 rounded-2xl border border-cream-200/80 space-y-1">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-espresso-500 block">Stored Items & Bill Breakdown</span>
+                            ${order.items.map(i => `
+                                <div class="flex justify-between py-1 border-b border-cream-200/60 last:border-none">
+                                    <span><strong>${i.qty}x ${i.name}</strong> <span class="text-espresso-500">(${i.option})</span></span>
+                                    <span class="font-bold">₹${i.price * i.qty}</span>
+                                </div>
+                            `).join('')}
+                            <div class="pt-1.5 flex flex-wrap justify-between text-[11px] text-espresso-600 font-medium">
+                                <span>Subtotal: ₹${order.subtotal} • GST: ₹${order.gst}</span>
+                                <span class="font-bold text-espresso-900">Total Paid: ₹${order.grandTotal}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exclusive Owner-Only Mail Controls -->
+                    <div class="bg-cream-100/90 p-3.5 rounded-2xl border border-cream-300 space-y-2.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="font-bold text-espresso-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-envelope-circle-check text-sage-700"></i>
+                                Owner Mail Dispatch
+                            </span>
+                            <div class="flex items-center gap-2 font-bold">
+                                <span class="${order.ownerMailSent ? 'text-sage-700' : 'text-terracotta-600'}">
+                                    ${order.ownerMailSent ? '✓ Owner Sent' : '• Owner Pending'}
+                                </span>
+                                <span class="${order.customerMailSent ? 'text-sage-700' : 'text-terracotta-600'}">
+                                    ${order.customerMailSent ? '✓ Receipt Sent' : '• Receipt Pending'}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <button type="button" onclick="ownerSendOrderEmails('${order.orderId}', 'owner')" class="py-2 px-3 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 text-[11px] font-bold transition-colors flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Mail Owner Copy</span>
+                            </button>
+                            <button type="button" onclick="ownerSendOrderEmails('${order.orderId}', 'customer')" class="py-2 px-3 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white text-[11px] font-bold transition-colors flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-receipt"></i>
+                                <span>Send Customer Receipt</span>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="ownerSendOrderEmails('${order.orderId}', 'both')" class="py-1.5 px-2 rounded-lg bg-espresso-900 hover:bg-espresso-800 text-cream-50 text-[10px] font-bold transition-colors">
+                                Auto-Send Both
+                            </button>
+                            <button type="button" onclick="openEmailPreviewModal('owner', '${order.orderId}')" class="py-1.5 px-2 rounded-lg bg-white hover:bg-cream-200 border border-cream-300 text-espresso-900 text-[10px] font-bold transition-colors">
+                                Preview Owner
+                            </button>
+                            <button type="button" onclick="openEmailPreviewModal('customer', '${order.orderId}')" class="py-1.5 px-2 rounded-lg bg-white hover:bg-cream-200 border border-cream-300 text-espresso-900 text-[10px] font-bold transition-colors">
+                                Preview Receipt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderOwnerOrdersList() {
             if (!currentUser || currentUser.role !== 'owner') return;
 
-            const container = document.getElementById('owner-orders-container');
+            const incompleteContainer = document.getElementById('owner-incomplete-orders-container');
+            const completedContainer = document.getElementById('owner-completed-orders-container');
             const todayKey = getLocalDateKey();
 
             const totalOrders = ordersStore.length;
@@ -4122,12 +3991,17 @@
             const completedCount = ordersStore.filter(o => o.completionStatus === 'completed').length;
             const sentMails = ordersStore.reduce((sum, o) => sum + (o.ownerMailSent ? 1 : 0) + (o.customerMailSent ? 1 : 0), 0);
 
-            document.getElementById('owner-stat-orders').textContent = totalOrders;
-            document.getElementById('owner-stat-revenue').textContent = `₹${totalRevenue}`;
-            document.getElementById('owner-stat-pending-mail').textContent = inQueueCount;
-            const completedEl = document.getElementById('owner-stat-completed');
-            if (completedEl) completedEl.textContent = completedCount;
-            document.getElementById('owner-stat-sent-mail').textContent = sentMails;
+            const statOrdersEl = document.getElementById('owner-stat-orders');
+            const statRevEl = document.getElementById('owner-stat-revenue');
+            const statPendingEl = document.getElementById('owner-stat-pending-mail');
+            const statCompletedEl = document.getElementById('owner-stat-completed');
+            const statSentMailEl = document.getElementById('owner-stat-sent-mail');
+
+            if (statOrdersEl) statOrdersEl.textContent = totalOrders;
+            if (statRevEl) statRevEl.textContent = `₹${totalRevenue}`;
+            if (statPendingEl) statPendingEl.textContent = inQueueCount;
+            if (statCompletedEl) statCompletedEl.textContent = completedCount;
+            if (statSentMailEl) statSentMailEl.textContent = sentMails;
 
             const todayOrders = ordersStore.filter(o => (o.orderDateKey || todayKey) === todayKey);
             const previousOrders = ordersStore.filter(o => (o.orderDateKey || todayKey) !== todayKey);
@@ -4146,149 +4020,33 @@
                 visibleOrders = previousOrders;
             }
 
-            if (visibleOrders.length === 0) {
-                const emptyTitle = ownerOrderFilter === 'previous'
-                    ? 'No Previous Days Orders Archived Yet'
-                    : ownerOrderFilter === 'today'
-                        ? 'No Orders Placed Today Yet'
-                        : 'No Customer Orders Yet';
-                const emptyDesc = ownerOrderFilter === 'previous'
-                    ? 'Orders from earlier calendar dates are automatically stored here for your records and accounting.'
-                    : 'Whenever a customer completes checkout and pays via UPI (kingvikhyat11@fam), their order appears here in queue.';
-                container.innerHTML = `
-                    <div class="bg-white rounded-3xl p-12 border border-cream-200 text-center space-y-3">
-                        <div class="w-14 h-14 rounded-2xl bg-sage-100 text-sage-700 flex items-center justify-center mx-auto">
-                            <i class="fa-solid fa-inbox text-xl"></i>
-                        </div>
-                        <h3 class="font-serif text-2xl font-bold text-espresso-900">${emptyTitle}</h3>
-                        <p class="text-xs sm:text-sm text-espresso-600 max-w-md mx-auto">${emptyDesc}</p>
-                    </div>
-                `;
-                return;
+            const incompleteOrders = visibleOrders.filter(o => o.completionStatus !== 'completed');
+            const completedOrders = visibleOrders.filter(o => o.completionStatus === 'completed');
+
+            const incBadge = document.getElementById('window-incomplete-badge');
+            const compBadge = document.getElementById('window-completed-badge');
+            if (incBadge) incBadge.textContent = `${incompleteOrders.length} In Queue`;
+            if (compBadge) compBadge.textContent = `${completedOrders.length} Completed`;
+
+            if (incompleteContainer) {
+                incompleteContainer.innerHTML = incompleteOrders.length === 0
+                    ? `<div class="bg-white rounded-2xl p-8 border border-cream-200 text-center space-y-2">
+                        <i class="fa-solid fa-mug-hot text-2xl text-terracotta-500"></i>
+                        <h4 class="font-serif text-xl font-bold text-espresso-900">No Incomplete Orders in Queue</h4>
+                        <p class="text-xs text-espresso-600">All orders in this view have been fulfilled, or new customer orders will appear here automatically.</p>
+                       </div>`
+                    : incompleteOrders.map(order => buildOwnerOrderCardHtml(order, todayKey)).join('');
             }
 
-            container.innerHTML = visibleOrders.map(order => {
-                const payloads = buildOrderEmailPayloads(order);
-                const isCompleted = order.completionStatus === 'completed';
-                const isPreviousDay = (order.orderDateKey || todayKey) !== todayKey;
-
-                return `
-                    <div class="bg-white rounded-3xl p-6 border ${isCompleted ? 'border-sage-300 bg-sage-50/20' : 'border-terracotta-400/50'} shadow-card space-y-4">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-cream-200">
-                            <div class="flex flex-wrap items-center gap-2.5">
-                                <span class="font-mono font-bold text-base px-3 py-1 rounded-xl bg-espresso-900 text-oat-400">#${order.orderId}</span>
-                                
-                                <!-- LIVE COMPLETION / QUEUE STATUS BADGE -->
-                                ${isCompleted
-                                    ? `<span class="px-3 py-1 rounded-full bg-sage-700 text-cream-50 text-xs font-bold inline-flex items-center gap-1.5">
-                                        <i class="fa-solid fa-circle-check"></i> Completed ${order.completedAt ? '• ' + order.completedAt : ''}
-                                       </span>`
-                                    : `<span class="px-3 py-1 rounded-full bg-terracotta-500/15 border border-terracotta-500/40 text-terracotta-600 text-xs font-bold inline-flex items-center gap-1.5">
-                                        <span class="w-2 h-2 rounded-full bg-terracotta-500 animate-ping"></span> Incomplete • In Queue
-                                       </span>`
-                                }
-
-                                ${isPreviousDay
-                                    ? `<span class="px-2.5 py-1 rounded-full bg-cream-200 text-espresso-800 text-[11px] font-bold">
-                                        <i class="fa-regular fa-calendar"></i> Previous Day (${order.orderDateKey})
-                                       </span>`
-                                    : `<span class="px-2.5 py-1 rounded-full bg-sage-100 text-sage-800 text-[11px] font-bold">Today</span>`
-                                }
-
-                                <span class="px-3 py-1 rounded-full bg-cream-100 text-espresso-800 text-xs font-semibold">${order.payMethodLabel}</span>
-                                <span class="text-xs text-espresso-500 font-medium">${order.timestamp}</span>
-                            </div>
-
-                            <div class="flex items-center gap-3">
-                                <span class="font-serif text-2xl font-bold text-sage-700">₹${order.grandTotal}</span>
-                                <button type="button" onclick="toggleOrderCompletionStatus('${order.orderId}')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-2xs ${
-                                    isCompleted
-                                        ? 'bg-cream-200 hover:bg-cream-300 text-espresso-900'
-                                        : 'bg-sage-700 hover:bg-sage-600 text-cream-50'
-                                }">
-                                    <i class="fa-solid ${isCompleted ? 'fa-rotate-left' : 'fa-check-double'}"></i>
-                                    <span>${isCompleted ? 'Reopen to Queue' : 'Mark Completed'}</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-                            <!-- Customer & Items Info -->
-                            <div class="lg:col-span-7 space-y-2.5 text-xs">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-cream-50 p-3.5 rounded-2xl border border-cream-200">
-                                    <div>
-                                        <span class="text-espresso-500 block">Customer</span>
-                                        <span class="font-bold text-espresso-900 text-sm">${order.customerName}</span>
-                                        <span class="block text-espresso-700">${order.customerPhone}</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-espresso-500 block">Customer Email & Fulfillment</span>
-                                        <span class="font-mono font-bold text-sage-800">${order.customerEmail}</span>
-                                        <span class="block text-espresso-700">${order.fulfillmentText}</span>
-                                    </div>
-                                </div>
-                                <div class="space-y-1 pt-1">
-                                    <span class="text-[11px] font-bold uppercase tracking-wider text-espresso-500">Order Items</span>
-                                    ${order.items.map(i => `
-                                        <div class="flex justify-between py-1 border-b border-cream-100">
-                                            <span><strong>${i.qty}x ${i.name}</strong> <span class="text-espresso-500">(${i.option})</span></span>
-                                            <span class="font-bold">₹${i.price * i.qty}</span>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-
-                            <!-- EXCLUSIVE OWNER-ONLY MAIL DISPATCH CONTROLS -->
-                            <div class="lg:col-span-5 bg-cream-100/90 p-4 rounded-2xl border border-cream-300 space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-[11px] font-bold uppercase tracking-wider text-espresso-800 flex items-center gap-1.5">
-                                        <i class="fa-solid fa-envelope-circle-check text-sage-700"></i>
-                                        Owner Mail Dispatch Controls
-                                    </span>
-                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-espresso-800 text-oat-400">Owner Only</span>
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-2 text-[11px]">
-                                    <div class="p-2 rounded-xl bg-white border border-cream-200">
-                                        <span class="text-espresso-500 block">Owner Mail:</span>
-                                        <span class="font-bold ${order.ownerMailSent ? 'text-sage-700' : 'text-terracotta-600'}">
-                                            ${order.ownerMailSent ? '✓ Sent to Owner' : '● Ready to Send'}
-                                        </span>
-                                    </div>
-                                    <div class="p-2 rounded-xl bg-white border border-cream-200">
-                                        <span class="text-espresso-500 block">Customer Receipt:</span>
-                                        <span class="font-bold ${order.customerMailSent ? 'text-sage-700' : 'text-terracotta-600'}">
-                                            ${order.customerMailSent ? '✓ Receipt Mailed' : '● Ready to Mail'}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-2 pt-1">
-                                    <button type="button" onclick="ownerSendOrderEmails('${order.orderId}', 'owner')" class="w-full py-2.5 px-3 rounded-xl bg-sage-700 hover:bg-sage-600 text-cream-50 text-xs font-bold transition-colors flex items-center justify-center gap-2">
-                                        <i class="fa-solid fa-paper-plane"></i>
-                                        <span>Mail Order Copy to Owner (${payloads.ownerEmail})</span>
-                                    </button>
-                                    <button type="button" onclick="ownerSendOrderEmails('${order.orderId}', 'customer')" class="w-full py-2.5 px-3 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs font-bold transition-colors flex items-center justify-center gap-2">
-                                        <i class="fa-solid fa-receipt"></i>
-                                        <span>Send Receipt to Customer (${order.customerEmail})</span>
-                                    </button>
-                                    <div class="grid grid-cols-3 gap-1.5 pt-1">
-                                        <button type="button" onclick="ownerSendOrderEmails('${order.orderId}', 'both')" class="py-2 px-2 rounded-lg bg-espresso-900 hover:bg-espresso-800 text-cream-50 text-[11px] font-bold transition-colors">
-                                            Auto-Send Both
-                                        </button>
-                                        <button type="button" onclick="openEmailPreviewModal('owner', '${order.orderId}')" class="py-2 px-2 rounded-lg bg-white hover:bg-cream-200 border border-cream-300 text-espresso-900 text-[11px] font-bold transition-colors">
-                                            Preview Owner
-                                        </button>
-                                        <button type="button" onclick="openEmailPreviewModal('customer', '${order.orderId}')" class="py-2 px-2 rounded-lg bg-white hover:bg-cream-200 border border-cream-300 text-espresso-900 text-[11px] font-bold transition-colors">
-                                            Preview Receipt
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+            if (completedContainer) {
+                completedContainer.innerHTML = completedOrders.length === 0
+                    ? `<div class="bg-white rounded-2xl p-8 border border-sage-200 text-center space-y-2">
+                        <i class="fa-solid fa-clipboard-check text-2xl text-sage-700"></i>
+                        <h4 class="font-serif text-xl font-bold text-espresso-900">No Completed Orders Yet</h4>
+                        <p class="text-xs text-espresso-600">Click "Mark Completed" on any order in the Incomplete Orders Window to store it here with its completion timestamp.</p>
+                       </div>`
+                    : completedOrders.map(order => buildOwnerOrderCardHtml(order, todayKey)).join('');
+            }
         }
 
         function saveEmailConfigSettings() {
