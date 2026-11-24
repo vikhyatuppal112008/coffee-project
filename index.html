@@ -145,7 +145,296 @@
 
         /* ==========================================
            PROFESSIONAL SCROLL REVEAL & AMBIENT ANIMATIONS
-        =========================================== -->
+        =========================================== */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           TIME-OF-DAY ADAPTIVE THEMES (NO BLOSSOM PETALS)
+        =========================================== */
+        body.theme-morning {
+            background-color: #FFF0F3 !important;
+            color: #3D1A24 !important;
+        }
+        body.theme-morning #navbar {
+            background-color: rgba(255, 240, 243, 0.94) !important;
+            border-bottom-color: #FAD4C8 !important;
+        }
+        body.theme-morning .bg-cream-50 {
+            background-color: #FFF5F7 !important;
+        }
+        body.theme-morning .bg-cream-100,
+        body.theme-morning .bg-cream-100\/70,
+        body.theme-morning .bg-cream-100\/80 {
+            background-color: #FFE4E9 !important;
+        }
+        body.theme-morning .bg-sage-700 {
+            background-color: #9D3B56 !important;
+        }
+        body.theme-morning .text-sage-700,
+        body.theme-morning .text-sage-600 {
+            color: #9D3B56 !important;
+        }
+
+        body.theme-afternoon {
+            background-color: #EDF7F6 !important;
+            color: #102A2E !important;
+        }
+        body.theme-afternoon #navbar {
+            background-color: rgba(237, 247, 246, 0.94) !important;
+            border-bottom-color: #BCE0DC !important;
+        }
+        body.theme-afternoon .bg-cream-50 {
+            background-color: #F3FAFA !important;
+        }
+        body.theme-afternoon .bg-cream-100,
+        body.theme-afternoon .bg-cream-100\/70,
+        body.theme-afternoon .bg-cream-100\/80 {
+            background-color: #DCEFED !important;
+        }
+        body.theme-afternoon .bg-sage-700 {
+            background-color: #0F6E6E !important;
+        }
+        body.theme-afternoon .text-sage-700,
+        body.theme-afternoon .text-sage-600 {
+            color: #0F6E6E !important;
+        }
+
+        body.theme-evening {
+            background-color: #19120E !important;
+            color: #F5EFE6 !important;
+        }
+        body.theme-evening #navbar {
+            background-color: rgba(25, 18, 14, 0.94) !important;
+            border-bottom-color: #3B2820 !important;
+        }
+        body.theme-evening .bg-cream-50 {
+            background-color: #211712 !important;
+        }
+        body.theme-evening .bg-cream-100,
+        body.theme-evening .bg-cream-100\/70,
+        body.theme-evening .bg-cream-100\/80 {
+            background-color: #2B1E18 !important;
+        }
+        body.theme-evening .bg-white {
+            background-color: #261B15 !important;
+            border-color: #3D2B22 !important;
+        }
+        body.theme-evening .text-espresso-900,
+        body.theme-evening .text-espresso-800 {
+            color: #FAF3E8 !important;
+        }
+        body.theme-evening .text-espresso-700,
+        body.theme-evening .text-espresso-600 {
+            color: #D7C7B2 !important;
+        }
+    </style>
+</head>
+<body class="bg-cream-50 text-espresso-800 font-sans antialiased selection:bg-sage-700 selection:text-cream-50 overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- ==========================================
+         0. LIVE AMBIENCE STATUS STRIP
+    =========================================== -->
+    <div class="bg-espresso-900 text-cream-100 text-[11px] py-2 px-4 border-b border-espresso-700">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span id="time-theme-icon" class="text-oat-400"><i class="fa-solid fa-water"></i></span>
+                <span id="time-theme-status" class="font-medium">Afternoon Blue & SeaGreen Sanctuary • Auto-synced</span>
+            </div>
+            <div class="flex items-center gap-3 text-cream-300">
+                <span id="theme-sync-label" class="hidden sm:inline font-semibold text-oat-400">Auto Time-Sync Active</span>
+                <span>•</span>
+                <span>Open Daily 7:30 AM – 11:00 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         1. STICKY MULTI-PAGE NAVIGATION BAR
+    =========================================== -->
+    <header id="navbar" class="sticky top-0 left-0 right-0 z-40 transition-all duration-300 bg-cream-50/95 backdrop-blur-md border-b border-cream-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <button onclick="navigateTo('home')" class="flex items-center gap-3 group focus:outline-none text-left">
+                    <div class="w-10 h-10 rounded-2xl bg-sage-700 text-cream-50 flex items-center justify-center shadow-sm group-hover:bg-sage-600 transition-colors">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9z"/>
+                            <path d="M12 22c-4.97 0-9-4.03-9-9 4.97 0 9 4.03 9 9z"/>
+                            <path d="M12 22V8"/>
+                            <path d="M12 8c0-3.31 2.69-6 6-6 0 3.31-2.69 6-6 6z"/>
+                            <path d="M12 11c0-2.76-2.24-5-5-5 0 2.76 2.24 5 5 5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-espresso-900 block leading-none">Blooming Blossom</span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-sage-600 font-semibold block mt-0.5">Roastery, Conservatory & Hearth</span>
+                    </div>
+                </button>
+
+                <!-- Desktop Multi-Page Navigation Tabs -->
+                <nav class="hidden md:flex items-center space-x-1.5 lg:space-x-2.5 bg-cream-100/80 px-2.5 py-1.5 rounded-full border border-cream-200">
+                    <button onclick="navigateTo('home')" data-nav="home" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-cream-50 bg-sage-700 shadow-xs inline-flex items-center gap-1.5">
+                        Home
+                    </button>
+                    <button onclick="navigateTo('menu')" data-nav="menu" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700 inline-flex items-center gap-1.5">
+                        Menu
+                    </button>
+                    <button onclick="navigateTo('story')" data-nav="story" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700 inline-flex items-center gap-1.5">
+                        Our Story
+                    </button>
+                    <button onclick="navigateTo('visit')" data-nav="visit" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700 inline-flex items-center gap-1.5">
+                        Visit & Reserve
+                    </button>
+                    <button onclick="navigateTo('owner')" data-nav="owner" class="nav-tab px-4 py-2 rounded-full text-sm font-semibold transition-all text-espresso-700 hover:text-sage-700 inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-crown text-[11px] text-terracotta-500"></i>
+                        <span>Owner Portal</span>
+                        <span id="owner-nav-badge" class="hidden px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-terracotta-500 text-white">0</span>
+                    </button>
+                </nav>
+
+                <!-- Right Actions: Auth Login Button, Order Bag Button & Mobile Menu Toggle -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="handleHeaderAuthClick()" id="nav-auth-btn" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-cream-100 hover:bg-cream-200 border border-cream-300 text-espresso-900 text-xs sm:text-sm font-semibold transition-all active:scale-95">
+                        <i class="fa-regular fa-user text-sage-700"></i>
+                        <span id="nav-auth-label">Login</span>
+                    </button>
+
+                    <button onclick="toggleCartDrawer(true)" aria-label="Open Order Bag" class="relative inline-flex items-center gap-2.5 bg-espresso-700 hover:bg-espresso-900 text-cream-50 px-4 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm hover:shadow active:scale-95">
+                        <i data-lucide="shopping-bag" class="w-4 h-4 text-oat-400"></i>
+                        <span class="hidden sm:inline">Order Bag</span>
+                        <span id="nav-cart-badge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold bg-terracotta-500 text-white rounded-full">0</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-espresso-800 hover:bg-cream-200/60 focus:outline-none" aria-label="Toggle navigation menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-cream-200 px-4 pt-2 pb-5 space-y-1.5 shadow-lg">
+            <button onclick="navigateTo('home'); toggleMobileMenu();" data-mobile-nav="home" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold bg-sage-700 text-cream-50 flex items-center justify-between">Home</button>
+            <button onclick="navigateTo('menu'); toggleMobileMenu();" data-mobile-nav="menu" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-800 hover:bg-cream-100 flex items-center justify-between">Menu</button>
+            <button onclick="navigateTo('story'); toggleMobileMenu();" data-mobile-nav="story" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-800 hover:bg-cream-100 flex items-center justify-between">Our Story</button>
+            <button onclick="navigateTo('visit'); toggleMobileMenu();" data-mobile-nav="visit" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-800 hover:bg-cream-100 flex items-center justify-between">Visit & Reserve</button>
+            <button onclick="navigateTo('owner'); toggleMobileMenu();" data-mobile-nav="owner" class="mobile-nav-tab w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-espresso-900 hover:bg-cream-100 flex items-center justify-between">
+                <span>👑 Owner Portal</span>
+                <span class="text-xs font-bold text-terracotta-600">Orders & Mail</span>
+            </button>
+            <button onclick="openAuthModal(); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-sage-700 bg-sage-50 hover:bg-sage-100">
+                🔐 Customer / Owner Login
+            </button>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT AREA (MULTI-PAGE VIEWS)
+    =========================================== -->
+    <main class="flex-1">
+
+        <!-- ******************************************
+             PAGE 1: HOME VIEW
+        ******************************************* -->
+        <div id="page-home" class="page-view">
+            <!-- Hero Section -->
+            <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+                        <!-- Left Editorial Copy -->
+                        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 border border-sage-200 text-sage-700 text-xs font-semibold uppercase tracking-wider">
+                                <i data-lucide="sprout" class="w-3.5 h-3.5 text-sage-600"></i>
+                                <span>Single-Estate Roastery, Glasshouse & Wood-Fired Kitchen</span>
+                            </div>
+
+                            <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-espresso-900 leading-[1.08] tracking-tight">
+                                Where Artisan Roast Meets <span class="italic font-normal text-sage-600">Botanical Calm.</span>
+                            </h1>
+
+                            <p class="text-base sm:text-lg text-espresso-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Sip high-altitude Chikmagalur & Araku espresso beneath sun-dappled ferns, alongside zero-proof botanical coolers, wood-fired sourdough pizzas, and gourmet brioche burgers.
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                                <button onclick="navigateTo('menu')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-sage-700 hover:bg-sage-600 text-cream-50 font-semibold text-sm shadow-glow transition-all hover:-translate-y-0.5">
+                                    <span>Explore Full Menu</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="navigateTo('visit')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-cream-100 hover:bg-cream-200 text-espresso-800 border border-cream-300 font-semibold text-sm transition-all">
+                                    <i data-lucide="calendar-heart" class="w-4 h-4 text-terracotta-500"></i>
+                                    <span>Book a Conservatory Table</span>
+                                </button>
+                            </div>
+
+                            <!-- Micro-Stats -->
+                            <div class="pt-6 border-t border-cream-200 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                                <div>
+                                    <p class="font-serif text-2xl sm:text-3xl font-bold text-espresso-900">100%</p>
+                                    <p class="text-xs text-espresso-600 mt-0.5">Direct-Trade Indian Estates</p>
+                                </div>
+                                <div>
+                                    <p class="font-serif text-2xl sm:text-3xl font-bold text-sage-600">54+</p>
+                                    <p class="text-xs text-espresso-600 mt-0.5">Brews, Shakes & Oven Bakes</p>
+                                </div>
+                                <div>
+                                    <p class="font-serif text-2xl sm:text-3xl font-bold text-terracotta-500">4.9 ★</p>
+                                    <p class="text-xs text-espresso-600 mt-0.5">Guest Rated Sanctuary</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Visual Arch -->
+                        <div class="lg:col-span-6 relative">
+                            <div class="relative mx-auto max-w-lg lg:max-w-none">
+                                <div class="relative rounded-t-[160px] rounded-b-[32px] overflow-hidden shadow-soft border-4 border-cream-100 aspect-[4/5] bg-cream-200">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85" 
+                                        alt="Sunlit botanical coffee shop interior with lush greenery and latte art" 
+                                        onerror="this.src='https://placehold.co/800x1000/DFE8E3/2C3E35?text=Blooming+Blossom+Conservatory'"
+                                        class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-espresso-900/50 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 right-6 text-cream-50 flex items-end justify-between">
+                                        <div>
+                                            <span class="text-xs uppercase tracking-widest text-cream-200 block">The Glasshouse & Hearth</span>
+                                            <p class="font-serif text-2xl font-semibold">Morning Pour-Over & Oven Bar</p>
+                                        </div>
+                                        <span class="px-3 py-1 rounded-full bg-cream-50/20 backdrop-blur-md text-xs font-medium border border-white/20">
+                                            Open Today • 7:30am–11pm
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Barista Pick Card -->
+                                <div onclick="openItemModal(7)" class="hidden sm:flex items-center gap-3.5 bg-cream-50/95 backdrop-blur-md p-4 rounded-2xl shadow-soft border border-cream-200 absolute -left-8 bottom-16 max-w-xs animate-float cursor-pointer hover:border-sage-600 transition-colors">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=200&q=80" 
+                                        alt="Lavender Honey Oat Latte"
+                                        onerror="this.src='https://placehold.co/100x100/C87D55/FFFFFF?text=Latte'"
+                                        class="w-14 h-14 rounded-xl object-cover flex-shrink-0"
+                                    >
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-500">Barista Pick • ₹295</span>
+                                        <h4 class="font-serif text-lg font-bold text-espresso-900 leading-tight">Lavender Honey Oat Latte</h4>
+                                        <p class="text-xs text-espresso-600 mt-0.5">Tap to customize & order →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inspirational Quote Section -->
             <section class="py-16 sm:py-20 bg-cream-100/70 border-b border-cream-200 relative overflow-hidden">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal-on-scroll">
                     <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-sage-700/10 text-sage-700 mb-5">
@@ -157,7 +446,7 @@
                     <div class="mt-6 flex flex-col items-center justify-center gap-1">
                         <span class="w-12 h-0.5 bg-terracotta-500 rounded-full mb-2"></span>
                         <p id="inspirational-quote-author" class="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-sage-700">
-                            The Beans & Bloom Conservatory Manifesto
+                            The Blooming Blossom Conservatory Manifesto
                         </p>
                     </div>
                 </div>
@@ -182,7 +471,7 @@
                             </p>
                         </div>
                         <button onclick="navigateTo('menu')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cream-100 hover:bg-cream-200 border border-cream-300 text-espresso-900 text-xs font-bold uppercase tracking-wider transition-colors self-start md:self-auto">
-                            <span>Explore All 36 Items</span>
+                            <span>Explore Full Menu</span>
                             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                         </button>
                     </div>
